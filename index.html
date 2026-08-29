@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Amit Kumar Shukla - Solution Architect & Senior Technical Lead</title>
-  <meta name="description" content="Mobile-Responsive Executive Resume of Amit Kumar Shukla - Senior Technical Lead & Solution Architect with 20+ years of experience." />
+  <meta name="description" content="Executive Resume of Amit Kumar Shukla - Senior Technical Lead & Solution Architect with 20+ years of experience." />
   
   <!-- Modern Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
       --bg-surface: #111827;
       --bg-card: #1f293d;
       --bg-card-hover: #26334d;
-      --bg-accent-subtle: rgba(59, 130, 246, 0.1);
+      --bg-accent-subtle: rgba(59, 130, 246, 0.12);
       
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
@@ -85,12 +85,6 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
     }
 
     body {
@@ -99,7 +93,6 @@
       color: var(--text-primary);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -webkit-tap-highlight-color: transparent;
     }
 
     h1, h2, h3, h4, .font-heading {
@@ -117,7 +110,6 @@
       z-index: 100;
       background: var(--bg-surface);
       border-bottom: 1px solid var(--border-color);
-      backdrop-filter: blur(12px);
       box-shadow: var(--shadow-sm);
     }
 
@@ -171,10 +163,6 @@
       font-size: 0.85rem;
       outline: none;
     }
-    .search-input:focus {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 2px var(--bg-accent-subtle);
-    }
 
     .search-icon {
       position: absolute;
@@ -208,7 +196,6 @@
       color: var(--text-primary);
       text-decoration: none;
       min-height: 38px;
-      touch-action: manipulation;
     }
 
     .btn:hover {
@@ -221,10 +208,6 @@
       color: #ffffff;
       border: none;
     }
-    .btn-primary:hover {
-      opacity: 0.92;
-      color: #ffffff;
-    }
 
     /* Mobile Nav Bar Strip */
     .mobile-nav-strip {
@@ -234,11 +217,8 @@
       overflow-x: auto;
       white-space: nowrap;
       padding: 0.5rem 1rem;
-      -webkit-overflow-scrolling: touch;
     }
-    .mobile-nav-strip::-webkit-scrollbar {
-      display: none;
-    }
+    
     .mobile-nav-chip {
       display: inline-block;
       padding: 0.35rem 0.85rem;
@@ -251,6 +231,7 @@
       border: 1px solid var(--border-color);
       text-decoration: none;
     }
+    
     .mobile-nav-chip.active {
       background: var(--gradient-brand);
       color: #ffffff;
@@ -331,9 +312,6 @@
       color: var(--accent-blue);
       text-decoration: none;
       font-weight: 500;
-    }
-    .contact-links-list a:hover {
-      text-decoration: underline;
     }
 
     .toc-nav {
@@ -496,7 +474,6 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      touch-action: manipulation;
     }
 
     .skill-filter-btn.active, .skill-filter-btn:hover {
@@ -784,7 +761,7 @@
         display: block;
       }
       .toc-nav {
-        display: none; /* Handled by sticky mobile strip */
+        display: none;
       }
     }
 
@@ -804,7 +781,7 @@
         font-size: 0.78rem;
       }
       .btn-text-full {
-        display: none; /* Hide button text labels on small mobile, icons remain crisp */
+        display: none;
       }
       .hero-banner, .content-card {
         padding: 1.25rem;
@@ -925,4 +902,10 @@
   <header class="top-bar">
     <div class="top-bar-inner">
       <a href="#" class="brand-logo">
-        <img src="data:image/jpeg;base64,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
+        <img src="profile_unblurred.jpg" onerror="this.onerror=null; this.src='IMG_7611.JPG';" alt="Amit Kumar Shukla" class="brand-avatar-sm" />
+        <span class="brand-name">Amit Kumar Shukla</span>
+      </a>
+
+      <!-- Real-time Search Box -->
+      <div class="search-box">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 
