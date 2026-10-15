@@ -39,15 +39,28 @@
     document.body.style.overflow = '';
   }
 
-  // Fetch search.json
+  // Fetch search.json with fallback for relative and root paths
   async function loadIndex() {
     try {
-      const response = await fetch('/search.json');
+      let response = await fetch('/search.json');
+      if (!response.ok) {
+        response = await fetch('./search.json');
+      }
+      if (!response.ok) {
+        response = await fetch('../search.json');
+      }
       if (response.ok) {
         searchIndex = await response.json();
       }
     } catch (err) {
-      console.warn('Could not load search.json: ', err);
+      try {
+        const fallback = await fetch('./search.json');
+        if (fallback.ok) {
+          searchIndex = await fallback.json();
+        }
+      } catch (e) {
+        console.warn('Could not load search.json: ', err);
+      }
     }
   }
 

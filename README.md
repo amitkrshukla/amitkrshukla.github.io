@@ -1,144 +1,108 @@
 # Amit Kumar Shukla — Technical Blog & Digital Architecture Portfolio
 
-A modern, responsive, high-performance static website and technical blog designed for **Amit Kumar Shukla** (Senior Digital Architect), optimized for zero-maintenance hosting on **GitHub Pages**.
+A modern, responsive, high-performance static website and technical architecture blog designed for **Amit Kumar Shukla** (Senior Digital Architect), optimized for zero-maintenance hosting on **GitHub Pages** (`amitkrshukla.github.io`).
 
 ---
 
-## 🌟 Key Features
+## 🌟 Key Architectural Features
 
-- **Built for GitHub Pages:** Native Jekyll architecture. No complex local runtime or npm dependencies required—push to GitHub and it deploys automatically.
-- **Java & Distributed Systems Focus:** Pre-configured topics for Java 17/21, Spring Boot 3, Spring WebFlux, Apache Kafka, AWS, Kubernetes, and Domain-Driven Design (DDD).
-- **Fast Content Publishing:** Publish a new article in under 2 minutes by dropping a standard `.md` file into `_posts/`.
-- **Comprehensive Topic Categorization:**
-  - Dynamic category index with article count badges.
-  - Interactive keyword/tag filter on the articles index.
-  - Instant client-side search modal (<kbd>Ctrl + K</kbd> or <kbd>/</kbd>) across titles, tags, and content.
+- **Ready for GitHub Pages:** Pure static HTML/CSS/JS architecture with `.nojekyll` and GitHub Actions deployment workflow. No Ruby or npm required—deploy directly to GitHub Pages with instant page loads.
+- **Modern Java & Enterprise Focus:** Pre-configured topics for Java 17/21, Spring Boot 3, Spring WebFlux, Apache Kafka, AWS, Kubernetes (KCNA), and Domain-Driven Design (DDD).
+- **Fast Content Publishing:** Publish a new article in seconds using `.\new-article.ps1` or by creating a new article folder under `articles/`.
+- **Intuitive Category Traversal on Home Page:**
+  - 6 prominent technology category cards with icons, descriptions, and article count badges.
+  - Interactive category filter buttons right on the home page for instant filtering without reloading.
+  - Quick keyword search bar on both Home and Articles catalog pages.
+  - Dedicated `/categories/` topic index with anchor jump pills.
+  - Instant client-side search modal (<kbd>Ctrl + K</kbd>) across titles, tags, and content.
 - **Interactive Resume & PDF Access:**
-  - Dedicated `/resume/` page featuring full executive summary, skills matrix, chronological work history (Infinite, Cognizant, HSBC, Cybage), certifications (Google Gen AI Leader, KCNA, Scrum Master), and education.
-  - One-click "Download PDF" button linking directly to `assets/AmitShukla_Resume_SeniorDigitalArchitect.pdf`.
-  - Built-in print stylesheet for clean, professional paper/PDF printing.
-- **Modern UI & Developer Experience:**
-  - Dark & Light mode toggle with automatic OS preference detection and persistence.
+  - Full executive resume page at `/resume/` with professional summary, core competencies matrix, work history (Infinite, Cognizant, HSBC, Cybage), certifications (Google GenAI Leader, KCNA, Scrum Master), and education.
+  - Direct "Download PDF" links on the Home hero, navbar, and resume toolbar pointing directly to `AmitShukla_Resume_SeniorDigitalArchitect.pdf`.
+  - Built-in print stylesheet for clean, professional paper/PDF printing (`window.print()`).
+- **Modern UI & Aesthetics:**
+  - Architectural Dark & Light mode toggle with automatic OS preference detection and persistent local storage.
   - Syntax highlighting for Java, XML, YAML, JSON, and Bash.
   - One-click code snippet copy buttons.
-  - Automatic sticky Table of Contents (TOC) with ScrollSpy for long-form technical deep-dives.
-  - SEO meta tags, OpenGraph social cards, and RSS feed (`feed.xml`).
+  - Sticky header with glassmorphism blur and smooth responsive mobile navigation.
+  - SEO meta tags, OpenGraph social cards, and RSS feed support.
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-├── _config.yml               # Site metadata, author information, social links & plugins
-├── _data/
-│   ├── categories.yml        # Topic definitions, icons, descriptions & slugs
-│   └── navigation.yml        # Navigation menu items
-├── _layouts/
-│   ├── default.html          # Base layout (HTML shell, header, footer, search modal)
-│   ├── home.html             # Homepage layout (hero, metrics, categories, recent posts)
-│   ├── post.html             # Technical article layout (TOC, author card, share buttons)
-│   └── page.html             # Standard page layout
-├── _includes/
-│   ├── head.html             # Fonts (Inter & Fira Code), SEO, styles
-│   ├── header.html           # Sticky navbar, search trigger, theme switcher
-│   ├── footer.html           # Footer, social links, topics & copyright
-│   ├── post-card.html        # Reusable card component for post listings
-│   └── search.html           # Instant modal search dialog
-├── _posts/                   # Articles repository (drop new Markdown files here)
-│   ├── 2026-10-01-building-high-throughput-reactive-microservices-spring-webflux.md
-│   ├── 2026-09-15-enterprise-domain-driven-design-and-openapi-contracts.md
-│   ├── 2026-08-20-event-driven-architecture-with-kafka-and-idempotent-consumers.md
-│   └── 2026-07-10-securing-cloud-native-java-microservices-jwt-and-zero-trust.md
+├── index.html                # Home page with hero, stats, category browser & latest articles
+├── .nojekyll                 # Bypasses Jekyll on GitHub Pages to serve static files instantly
+├── .github/
+│   └── workflows/
+│       └── deploy.yml        # GitHub Pages automated static deployment workflow
 ├── assets/
 │   ├── css/
 │   │   ├── style.css         # Modern responsive CSS, Dark/Light mode, print styles
 │   │   └── syntax.css        # Syntax highlighting theme
 │   ├── js/
-│   │   ├── main.js           # Theme toggle, TOC generator, code copy, mobile menu
+│   │   ├── main.js           # Theme toggle, mobile menu, code copy, TOC
 │   │   └── search.js         # Instant client-side search engine
 │   ├── images/
 │   │   ├── avatar.svg        # Vector profile avatar
 │   │   └── favicon.svg       # Brand icon
 │   └── AmitShukla_Resume_SeniorDigitalArchitect.pdf  # Downloadable resume PDF
 ├── articles/
-│   └── index.html            # All articles page with real-time category filter
+│   ├── index.html            # All articles catalog with real-time category & keyword filter
+│   ├── securing-cloud-native-java-microservices-jwt-and-zero-trust/index.html
+│   ├── event-driven-architecture-with-kafka-and-idempotent-consumers/index.html
+│   ├── enterprise-domain-driven-design-and-openapi-contracts/index.html
+│   └── building-high-throughput-reactive-microservices-spring-webflux/index.html
 ├── categories/
-│   └── index.html            # Category index page
+│   └── index.html            # Dedicated category index with jump navigation
 ├── resume/
-│   └── index.html            # Dedicated interactive resume page
+│   └── index.html            # Dedicated interactive web resume & printable profile
 ├── about/
-│   └── index.html            # Author bio & architectural philosophy
-├── search.json               # JSON search feed
-├── 404.html                  # Custom 404 page
+│   └── index.html            # Author bio, architectural pillars & tech spectrum
+├── search.json               # Pre-indexed search data for instant modal search
+├── 404.html                  # Custom 404 error page
 ├── preview.ps1               # Zero-dependency local preview server for Windows PowerShell
+├── new-article.ps1           # Quick article scaffolding script
 ├── PUBLISHING_GUIDE.md       # Step-by-step publishing instructions
 └── README.md
 ```
 
 ---
 
-## 🚀 Step-by-Step: Hosting on GitHub Pages
+## 💻 Local Preview on Windows
 
-### Method 1: Using GitHub Web (Quickest & No Git Installation Required)
+To preview your site locally on Windows without installing Ruby, Node, or gems:
 
-1. **Log in to GitHub:** Go to [github.com](https://github.com).
-2. **Create a New Repository:**
-   - Click the **+** icon in the top right &rarr; **New repository**.
-   - If you want the site URL to be `https://<your-username>.github.io`:
-     - Name the repository: `<your-username>.github.io` (e.g., `amit-kr-shukla.github.io`).
-   - If you want it as a project site (e.g., `https://<your-username>.github.io/tech-blog`):
-     - Name it `tech-blog` and set `baseurl: "/tech-blog"` in `_config.yml`.
-   - Set visibility to **Public**.
-3. **Upload the Files:**
-   - In the repository, click **Upload files** and drag the contents of this folder into GitHub.
-   - Commit the files to the `main` branch.
-4. **Enable GitHub Pages:**
-   - In your repository, click **Settings** &rarr; **Pages** (in the left sidebar).
-   - Under **Build and deployment > Source**:
-     - Choose **Deploy from a branch**.
-     - Select Branch: `main`, Folder: `/ (root)`.
-     - Click **Save**.
-5. **Done!** In 1-2 minutes, GitHub Pages will deploy your site and provide your live URL.
-
----
-
-### Method 2: Using Git Command Line
-
-If you have Git installed:
-
-```bash
-cd c:\Amit\work\gemini
-
-# Initialize git repository
-git init -b main
-
-# Add files and commit
-git add .
-git commit -m "Initial commit: Amit Kumar Shukla Technical Blog & Portfolio"
-
-# Link to your remote GitHub repository
-git remote add origin https://github.com/<your-username>/<your-username>.github.io.git
-
-# Push to GitHub
-git push -u origin main
-```
-
----
-
-## 💻 Local Testing on Windows
-
-To preview your site locally on Windows without installing Ruby or Node:
-
-1. Open PowerShell in this folder (`c:\Amit\work\gemini`).
-2. Run the included preview script:
+1. Open PowerShell in this folder:
    ```powershell
    .\preview.ps1
    ```
-3. Your default web browser will open at `http://localhost:4000/resume/`.
-4. Press `Ctrl + C` in PowerShell whenever you want to stop the server.
+2. Your default web browser will automatically open at `http://localhost:4000/`.
+3. Press `Ctrl + C` in PowerShell whenever you want to stop the server.
 
 ---
 
-## 📝 Writing New Content
+## 📝 Creating a New Article
 
-Refer to [PUBLISHING_GUIDE.md](file:///c:/Amit/work/gemini/PUBLISHING_GUIDE.md) for complete details on creating new articles, configuring front matter, and code highlighting.
+To write a new article:
+```powershell
+.\new-article.ps1
+```
+Follow the prompt for title, category, tags, and summary. It will create `articles/<slug>/index.html` and update `search.json` automatically.
+
+Refer to [PUBLISHING_GUIDE.md](file:///c:/Amit/work/amitkrshukla/PUBLISHING_GUIDE.md) for more details.
+
+---
+
+## 🚀 Publishing to GitHub Pages
+
+1. Commit and push your code to GitHub:
+   ```bash
+   git add .
+   git commit -m "Update site and articles"
+   git push origin main
+   ```
+2. In your GitHub repository:
+   - Go to **Settings** &rarr; **Pages**.
+   - Under **Build and deployment > Source**, ensure **GitHub Actions** is selected (it will use `.github/workflows/deploy.yml`).
+   - Your site will be live at `https://amitkrshukla.github.io/`.

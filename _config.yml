@@ -2,8 +2,8 @@
 title: "Amit Kumar Shukla"
 subtitle: "Senior Digital Architect | Enterprise Architecture & Java Technologist"
 description: "Architectural insights, Java 17/21 innovations, Spring Boot, Reactive Microservices, Cloud-Native AWS/Kubernetes, and Enterprise Systems Design by Amit Kumar Shukla."
-url: "https://amit-kr-shukla.github.io" # Update with your GitHub Pages URL
-baseurl: "" # Keep empty if using root domain or username.github.io, or set to "/repo-name" if project page
+url: "https://amitkrshukla.github.io" # GitHub Pages URL
+baseurl: "" # Empty for username.github.io root domain
 
 # Author Details (Derived from Amit's Resume)
 author:

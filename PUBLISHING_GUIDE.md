@@ -1,76 +1,70 @@
 # Quick Publishing Guide for Amit Kumar Shukla
 
-Publishing a new article on your GitHub Pages site is designed to be frictionless and straightforward. Follow these steps:
+Publishing a new article on your GitHub Pages site is designed to be frictionless and straightforward.
 
 ---
 
-## 🚀 How to Publish a New Article in 3 Steps
+## 🚀 How to Publish a New Article
 
-### Step 1: Create a Markdown File in `_posts/`
-Name your file using the standard date-slug format:
-```text
-_posts/YYYY-MM-DD-your-article-title.md
+### Method 1: Automated Scaffold (Recommended)
+Open PowerShell in the project directory and run:
+```powershell
+.\new-article.ps1
 ```
-*Example:* `_posts/2026-11-05-mastering-virtual-threads-java-21.md`
+The script will prompt you for:
+1. **Title** (e.g. `Mastering Java 21 Virtual Threads & Structured Concurrency`)
+2. **Category** (select from the 6 pre-configured architecture categories)
+3. **Summary** (1-2 sentence excerpt used for search and cards)
+4. **Tags** (e.g. `Java 21, Loom, Concurrency, SpringBoot`)
 
-### Step 2: Add Front Matter Metadata
-Paste this block at the top of your markdown file:
+The script will automatically:
+- Create `articles/<slug>/index.html` with all formatting, breadcrumbs, tags, and author card.
+- Automatically update `search.json` so your new article is instantly searchable!
 
-```yaml
----
-layout: post
-title: "Mastering Virtual Threads & Structured Concurrency in Java 21"
-date: 2026-11-05 10:00:00 -0700
-categories: [Java, Architecture]
-tags: [Java 21, Virtual Threads, Project Loom, Concurrency, High Throughput]
-description: "How Project Loom and Virtual Threads redefine concurrency in high-throughput enterprise Java services."
-read_time: 7
----
-```
-
-#### Field Explanations:
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| `layout` | Keep as `post` | `post` |
-| `title` | The full title of your article | `"Mastering Virtual Threads in Java 21"` |
-| `date` | Publication date and time | `2026-11-05 10:00:00 -0700` |
-| `categories` | 1 or 2 main categories (see list below) | `[Java, Architecture]` |
-| `tags` | Keywords for search & filtering | `[Java 21, Concurrency, Spring]` |
-| `description` | 1-2 sentence summary (used for cards, SEO, and search) | `"Deep dive into JVM virtual threads..."` |
-| `read_time` | Estimated minutes to read | `7` |
+Then simply open `articles/<slug>/index.html` in your editor, add your paragraphs and code snippets, and save!
 
 ---
 
-### Step 3: Write Your Content in Markdown
-Write your article using standard Markdown. Code blocks, callouts, tables, and lists are automatically styled.
+### Method 2: Manual Creation
+1. Create a folder inside `articles/` with your article slug:
+   ```text
+   articles/my-new-article-title/index.html
+   ```
+2. Copy any existing article file (e.g. `articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/index.html`) as a starting template.
+3. Update the Title, Category tag, Date, and content.
+4. Add an entry to `search.json` with the title, URL, date, category, tags, and description.
 
-#### Writing Code Blocks with Syntax Highlighting:
-Use triple backticks followed by the language (`java`, `xml`, `yaml`, `json`, `sql`, `bash`):
+---
 
-````markdown
-```java
-public record TransferRequest(
-    String sourceAccountId,
-    String destinationAccountId,
-    BigDecimal amount
-) {}
+## 💻 Previewing Locally
+
+To test your site locally in your web browser:
+```powershell
+.\preview.ps1
 ```
-````
+This starts a local lightweight preview server at `http://localhost:4000/` and automatically opens the Home page in your default browser.
+- All CSS styles, dark/light mode toggle, category filters, and search modal will be 100% active and functional.
+- Press `Ctrl + C` in the PowerShell terminal whenever you want to stop the preview server.
 
-#### Adding Alerts & Callouts:
-```markdown
-> [!NOTE]
-> Virtual threads do not replace OS threads for CPU-bound computations; they excel at high-volume I/O-bound tasks.
+---
 
-> [!TIP]
-> Use `Executors.newVirtualThreadPerTaskExecutor()` in Java 21 for immediate gains on non-blocking HTTP clients.
+## 🌐 Publishing to GitHub Pages
+
+Once you're satisfied with your changes locally, deploy them to GitHub Pages with standard Git commands:
+
+```bash
+git add .
+git commit -m "Publish new article and update site content"
+git push origin main
 ```
+
+Your GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically deploy the static content directly to **https://amitkrshukla.github.io** within seconds!
 
 ---
 
 ## 🏷️ Pre-Configured Categories
 
-The website has pre-configured categories defined in `_data/categories.yml`:
+The website has 6 pre-configured categories:
 
 | Category Name | Slug | Primary Focus |
 | :--- | :--- | :--- |
@@ -81,26 +75,15 @@ The website has pre-configured categories defined in `_data/categories.yml`:
 | **Enterprise Architecture & DDD** | `architecture` | Domain-Driven Design, OpenAPI Contracts, System Design |
 | **Security & Observability** | `security-observability` | JWT, RBAC, Splunk, AppDynamics, Kibana, Jenkins CI/CD |
 
-*Tip:* You can also add any new custom category anytime by adding an entry in `_data/categories.yml`!
-
 ---
 
-## 📄 Updating Your Resume & Details
+## 📄 Updating Your Resume & Profile Details
 
 ### 1. Update the Web Resume:
 Open `resume/index.html` and update any work experience, responsibilities, or skills.
 
 ### 2. Update the Downloadable PDF:
-Replace `assets/AmitShukla_Resume_SeniorDigitalArchitect.pdf` with your latest PDF file using the same filename.
+Replace `AmitShukla_Resume_SeniorDigitalArchitect.pdf` (and `assets/AmitShukla_Resume_SeniorDigitalArchitect.pdf`) with your latest PDF file using the same filename.
 
 ### 3. Update Contact & Social Details:
-Open `_config.yml` to update email, phone, LinkedIn URL, location, or bio. Changes will automatically update across the entire site (header, footer, home hero, and about page).
-
----
-
-## 🌐 Publishing to GitHub
-
-When you commit and push to your `main` branch on GitHub:
-1. GitHub Pages immediately detects the changes.
-2. The site rebuilds automatically in less than 60 seconds.
-3. Your new article appears on the homepage, category list, search index, and RSS feed!
+Open `_config.yml` or the header/footer of `index.html` to update email, phone, LinkedIn URL, or bio.

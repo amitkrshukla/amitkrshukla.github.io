@@ -1,20 +1,74 @@
----
-layout: default
-title: "Page Not Found"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | Amit Kumar Shukla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body class="site-body">
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="site-header-container">
+        <a class="site-brand" href="./">
+          <div class="brand-avatar"><span>AS</span></div>
+          <div class="brand-text">
+            <span class="brand-name">Amit Kumar Shukla</span>
+            <span class="brand-tagline">Senior Digital Architect</span>
+          </div>
+        </a>
+        <nav class="site-nav">
+          <ul class="nav-links">
+            <li><a href="./" class="nav-link">Home</a></li>
+            <li><a href="./articles/" class="nav-link">Articles</a></li>
+            <li><a href="./categories/" class="nav-link">Categories</a></li>
+            <li><a href="./resume/" class="nav-link">Resume</a></li>
+            <li><a href="./about/" class="nav-link">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-<div class="page-container text-center py-5">
-  <div class="error-page-content">
-    <div class="error-code">404</div>
-    <h1 class="error-title">Page Not Found</h1>
-    <p class="error-description">The architecture diagram you were looking for seems to have moved or does not exist.</p>
-    <div class="error-actions mt-4">
-      <a href="{{ '/' | relative_url }}" class="btn btn-primary">
-        <i class="fa-solid fa-house"></i> Return Home
-      </a>
-      <a href="{{ '/articles/' | relative_url }}" class="btn btn-secondary">
-        <i class="fa-solid fa-book-open"></i> Browse Articles
-      </a>
-    </div>
+    <main class="site-main" id="main-content">
+      <div class="page-container text-center" style="padding: 6rem 1.5rem;">
+        <div class="error-page-content">
+          <div class="error-code" style="font-size: 5rem; font-weight: 800; color: var(--accent-primary);">404</div>
+          <h1 class="error-title" style="margin-top: 1rem; margin-bottom: 1rem;">Page Not Found</h1>
+          <p class="error-description" style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem;">
+            The architectural blueprint or article you are looking for may have been moved or does not exist.
+          </p>
+          <div class="error-actions" style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="./" class="btn btn-primary"><i class="fa-solid fa-house"></i> Return Home</a>
+            <a href="./articles/" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Browse Articles</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-bottom">
+          <p>&copy; 2026 Amit Kumar Shukla. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </div>
-</div>
+</body>
+</html>
