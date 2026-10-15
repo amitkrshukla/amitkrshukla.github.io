@@ -1,0 +1,138 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Senior Digital Architect &bull; 20+ Years Experience</span>
+      </div>
+      <h1 class="hero-title">
+        Enterprise Architecture, <br>
+        <span class="hero-highlight">Modern Java</span> & Distributed Systems
+      </h1>
+      <p class="hero-description">
+        Hi, I'm <strong>Amit Kumar Shukla</strong>. I design and lead resilient, enterprise-scale digital platforms across banking and cloud ecosystems. Here I share practical engineering insights on Java 17/21, Spring Boot, reactive microservices, Kafka event streaming, and cloud-native architecture.
+      </p>
+
+      <div class="hero-actions">
+        <a href="{{ '/articles/' | relative_url }}" class="btn btn-primary">
+          <i class="fa-solid fa-book-open"></i> Read Articles
+        </a>
+        <a href="{{ '/resume/' | relative_url }}" class="btn btn-secondary">
+          <i class="fa-solid fa-file-lines"></i> Interactive Resume
+        </a>
+        <a href="{{ site.author.resume_pdf | relative_url }}" target="_blank" class="btn btn-ghost" title="Download PDF Resume">
+          <i class="fa-solid fa-download"></i> PDF
+        </a>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-number">20+</span>
+          <span class="stat-label">Years Designing Systems</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">17</span>
+          <span class="stat-label">Years at HSBC Global Banking</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">400+</span>
+          <span class="stat-label">Business Functions Unified</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100+</span>
+          <span class="stat-label">Engineers & Tech Leads Mentored</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Focus Areas / Categories Section -->
+<section class="section categories-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Knowledge Base by Technology</h2>
+        <p class="section-subtitle">Curated architectural guides, patterns, and deep-dives across the Java ecosystem</p>
+      </div>
+      <a href="{{ '/categories/' | relative_url }}" class="section-link">
+        View All Topics <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="category-grid">
+      {% for cat in site.data.categories %}
+        {% assign cat_posts = site.posts | where_exp: "item", "item.categories contains cat.name or item.categories contains cat.slug" %}
+        <a href="{{ '/categories/#' | append: cat.slug | relative_url }}" class="category-card">
+          <div class="category-icon">{{ cat.icon }}</div>
+          <div class="category-info">
+            <h3 class="category-name">{{ cat.name }}</h3>
+            <p class="category-desc">{{ cat.description }}</p>
+            <span class="category-count">
+              {{ cat_posts.size }} {% if cat_posts.size == 1 %}article{% else %}articles{% endif %}
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Latest Articles Section -->
+<section class="section articles-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Latest Published Articles</h2>
+        <p class="section-subtitle">Practical engineering lessons from 2 decades of production systems</p>
+      </div>
+      <a href="{{ '/articles/' | relative_url }}" class="section-link">
+        Browse All Articles <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="posts-grid">
+      {% for post in site.posts limit:6 %}
+        {% include post-card.html post=post %}
+      {% endfor %}
+    </div>
+
+    {% if site.posts.size == 0 %}
+      <div class="empty-state">
+        <i class="fa-solid fa-pen-nib"></i>
+        <h3>First articles are being drafted!</h3>
+        <p>Check back shortly or follow along on LinkedIn.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Architect Summary Callout -->
+<section class="section summary-callout-section">
+  <div class="section-container">
+    <div class="summary-card">
+      <div class="summary-content">
+        <span class="summary-tag">About The Author</span>
+        <h2 class="summary-title">Amit Kumar Shukla</h2>
+        <p class="summary-text">
+          Experienced in driving architecture for multi-country Agile teams, taking greenfield microservices from requirements to production, and modernizing legacy monoliths into cloud-native, event-driven architectures.
+        </p>
+        <div class="summary-badges">
+          <span class="badge-item"><i class="fa-solid fa-certificate"></i> Generative AI Leader &bull; Google</span>
+          <span class="badge-item"><i class="fa-solid fa-cloud"></i> KCNA &bull; Linux Foundation</span>
+          <span class="badge-item"><i class="fa-solid fa-award"></i> Scrum Master I & II &bull; Scrum.org</span>
+        </div>
+        <div class="summary-actions">
+          <a href="{{ '/about/' | relative_url }}" class="btn btn-outline-primary">Full Bio & Career Story</a>
+          <a href="{{ '/resume/' | relative_url }}" class="btn btn-secondary">Detailed Experience</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

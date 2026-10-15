@@ -1,0 +1,48 @@
+<article class="post-card">
+  <div class="post-card-meta">
+    {% if include.post.categories.first %}
+      <span class="post-category-tag">
+        {% assign cat_slug = include.post.categories.first | downcase %}
+        {% assign found_cat = site.data.categories | where: "slug", cat_slug | first %}
+        {% if found_cat %}{{ found_cat.icon }} {% endif %}
+        {{ include.post.categories.first }}
+      </span>
+    {% endif %}
+    <span class="post-date">
+      <i class="fa-regular fa-calendar"></i>
+      {{ include.post.date | date: "%b %d, %Y" }}
+    </span>
+    {% if include.post.read_time %}
+      <span class="post-reading-time">
+        <i class="fa-regular fa-clock"></i>
+        {{ include.post.read_time }} min read
+      </span>
+    {% endif %}
+  </div>
+
+  <h3 class="post-card-title">
+    <a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+  </h3>
+
+  <p class="post-card-excerpt">
+    {% if include.post.description %}
+      {{ include.post.description }}
+    {% else %}
+      {{ include.post.excerpt | strip_html | truncatewords: 28 }}
+    {% endif %}
+  </p>
+
+  {% if include.post.tags.size > 0 %}
+    <div class="post-card-tags">
+      {% for tag in include.post.tags limit:4 %}
+        <span class="tag-pill">#{{ tag }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="post-card-footer">
+    <a href="{{ include.post.url | relative_url }}" class="read-more-link">
+      Read Article <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</article>

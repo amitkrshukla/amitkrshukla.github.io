@@ -1,0 +1,160 @@
+---
+layout: default
+---
+
+<article class="post-layout" itemscope itemtype="http://schema.org/BlogPosting">
+  <!-- Post Header -->
+  <header class="post-header-hero">
+    <div class="post-header-container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="{{ '/articles/' | relative_url }}">Articles</a>
+        {% if page.categories.first %}
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ page.categories.first }}</span>
+        {% endif %}
+      </nav>
+
+      <div class="post-header-meta">
+        {% if page.categories.first %}
+          <span class="post-category-tag">
+            {{ page.categories.first }}
+          </span>
+        {% endif %}
+        <span class="post-header-date">
+          <i class="fa-regular fa-calendar"></i>
+          {{ page.date | date: "%B %d, %Y" }}
+        </span>
+        {% if page.read_time %}
+          <span class="post-header-readtime">
+            <i class="fa-regular fa-clock"></i>
+            {{ page.read_time }} min read
+          </span>
+        {% endif %}
+      </div>
+
+      <h1 class="post-main-title" itemprop="headline">{{ page.title }}</h1>
+
+      {% if page.description %}
+        <p class="post-main-lead" itemprop="description">{{ page.description }}</p>
+      {% endif %}
+
+      <div class="post-author-bar">
+        <div class="author-avatar-sm">
+          <span>AS</span>
+        </div>
+        <div class="author-details-sm">
+          <span class="author-name-sm" itemprop="author">{{ site.author.name }}</span>
+          <span class="author-title-sm">{{ site.author.title }}</span>
+        </div>
+        <div class="post-actions-sm">
+          <button class="share-btn-sm" id="copy-article-link" title="Copy article link">
+            <i class="fa-solid fa-link"></i> <span class="share-btn-text">Share</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content & Sidebar Layout -->
+  <div class="post-body-container">
+    <div class="post-layout-grid">
+      <!-- Main Article Body -->
+      <div class="post-content-column">
+        <div class="post-entry-content" itemprop="articleBody" id="article-content">
+          {{ content }}
+        </div>
+
+        <!-- Post Tags -->
+        {% if page.tags.size > 0 %}
+          <div class="post-footer-tags">
+            <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+            <div class="tags-list">
+              {% for tag in page.tags %}
+                <span class="tag-pill">#{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Share & Feedback Bar -->
+        <div class="post-share-section">
+          <h4 class="share-title">Found this insightful? Share with your network:</h4>
+          <div class="share-buttons">
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}" target="_blank" rel="noopener noreferrer" class="btn-share btn-linkedin">
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url }}" target="_blank" rel="noopener noreferrer" class="btn-share btn-twitter">
+              <i class="fa-brands fa-x-twitter"></i> Share
+            </a>
+            <a href="mailto:?subject={{ page.title | url_encode }}&body=Check out this architecture article: {{ page.url | absolute_url }}" class="btn-share btn-email">
+              <i class="fa-solid fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+
+        <!-- Author Bio Card -->
+        <div class="post-author-box">
+          <div class="author-box-avatar">
+            <span>AS</span>
+          </div>
+          <div class="author-box-info">
+            <span class="author-box-label">Written by</span>
+            <h3 class="author-box-name">{{ site.author.name }}</h3>
+            <p class="author-box-bio">
+              Senior Digital Architect with 20+ years designing enterprise-scale solutions across banking, telecom, and distributed cloud ecosystems. 17 years at HSBC.
+            </p>
+            <div class="author-box-links">
+              <a href="{{ '/about/' | relative_url }}">Read Full Bio</a> &bull;
+              <a href="{{ '/resume/' | relative_url }}">View Resume</a> &bull;
+              <a href="{{ site.author.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next / Previous Post Navigation -->
+        <nav class="post-pagination">
+          <div class="pagination-prev">
+            {% if page.previous.url %}
+              <a href="{{ page.previous.url | relative_url }}" class="pagination-link">
+                <span class="pagination-sub"><i class="fa-solid fa-arrow-left"></i> Previous Article</span>
+                <span class="pagination-title">{{ page.previous.title | truncate: 50 }}</span>
+              </a>
+            {% endif %}
+          </div>
+          <div class="pagination-next">
+            {% if page.next.url %}
+              <a href="{{ page.next.url | relative_url }}" class="pagination-link">
+                <span class="pagination-sub">Next Article <i class="fa-solid fa-arrow-right"></i></span>
+                <span class="pagination-title">{{ page.next.title | truncate: 50 }}</span>
+              </a>
+            {% endif %}
+          </div>
+        </nav>
+      </div>
+
+      <!-- Table of Contents Sidebar -->
+      <aside class="post-sidebar">
+        <div class="sticky-sidebar-wrapper">
+          <div class="toc-card" id="toc-container">
+            <h4 class="toc-title">
+              <i class="fa-solid fa-list-ul"></i> Table of Contents
+            </h4>
+            <nav class="toc-nav" id="toc-nav">
+              <!-- Dynamically populated or rendered -->
+            </nav>
+          </div>
+
+          <div class="sidebar-author-card">
+            <h4>Senior Digital Architect</h4>
+            <p>Amit Kumar Shukla</p>
+            <a href="{{ '/resume/' | relative_url }}" class="btn btn-sm btn-outline-primary btn-block">
+              <i class="fa-solid fa-file-lines"></i> View Resume
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</article>

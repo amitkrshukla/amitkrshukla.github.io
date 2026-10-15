@@ -1,0 +1,53 @@
+---
+layout: default
+title: "Article Categories & Topics"
+subtitle: "Browse technical topics and architectural disciplines"
+---
+
+<div class="page-container">
+  <header class="page-header text-center">
+    <h1 class="page-title">Browse Topics & Disciplines</h1>
+    <p class="page-subtitle">Categorized knowledge base covering modern Java, enterprise architecture, and distributed cloud computing.</p>
+  </header>
+
+  <!-- Category Nav Pills -->
+  <div class="category-jump-nav">
+    {% for cat in site.data.categories %}
+      <a href="#{{ cat.slug }}" class="category-jump-pill">
+        <span>{{ cat.icon }}</span> {{ cat.name }}
+      </a>
+    {% endfor %}
+  </div>
+
+  <!-- Category Sections -->
+  <div class="category-sections-list">
+    {% for cat in site.data.categories %}
+      {% assign cat_posts = site.posts | where_exp: "item", "item.categories contains cat.name or item.categories contains cat.slug" %}
+      
+      <section class="category-group-section" id="{{ cat.slug }}">
+        <div class="category-group-header">
+          <div class="category-group-icon">{{ cat.icon }}</div>
+          <div class="category-group-info">
+            <h2 class="category-group-title">{{ cat.name }}</h2>
+            <p class="category-group-desc">{{ cat.description }}</p>
+          </div>
+          <span class="category-group-badge">
+            {{ cat_posts.size }} {% if cat_posts.size == 1 %}Article{% else %}Articles{% endif %}
+          </span>
+        </div>
+
+        {% if cat_posts.size > 0 %}
+          <div class="posts-grid">
+            {% for post in cat_posts %}
+              {% include post-card.html post=post %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="empty-category-box">
+            <p>Articles under this topic are currently being prepared. Stay tuned!</p>
+          </div>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+</div>

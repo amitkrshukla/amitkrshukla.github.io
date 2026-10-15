@@ -1,0 +1,63 @@
+# Site Configuration for Amit Kumar Shukla's Technical Blog & Portfolio
+title: "Amit Kumar Shukla"
+subtitle: "Senior Digital Architect | Enterprise Architecture & Java Technologist"
+description: "Architectural insights, Java 17/21 innovations, Spring Boot, Reactive Microservices, Cloud-Native AWS/Kubernetes, and Enterprise Systems Design by Amit Kumar Shukla."
+url: "https://amit-kr-shukla.github.io" # Update with your GitHub Pages URL
+baseurl: "" # Keep empty if using root domain or username.github.io, or set to "/repo-name" if project page
+
+# Author Details (Derived from Amit's Resume)
+author:
+  name: "Amit Kumar Shukla"
+  title: "Senior Digital Architect | Enterprise Architecture Leadership"
+  email: "amit_kr_shukla@yahoo.com"
+  phone: "+1 (236) 863-4703"
+  location: "Burnaby, BC, Canada"
+  linkedin: "https://linkedin.com/in/amit-kr-shukla"
+  github: "https://github.com"
+  bio: "Digital Architect with 20+ years designing enterprise-scale digital solutions across banking, telecom, and distributed cloud-native ecosystems (17 years inside HSBC's global banking estate)."
+  avatar: "/assets/images/avatar.svg"
+  resume_pdf: "/assets/AmitShukla_Resume_SeniorDigitalArchitect.pdf"
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /articles/:year/:month/:day/:title/
+
+# Kramdown Settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - README.md
+  - PUBLISHING_GUIDE.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .github
+  - preview.ps1
+
+# Collections & Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Amit Kumar Shukla"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"

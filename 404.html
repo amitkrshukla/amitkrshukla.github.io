@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Page Not Found"
+---
+
+<div class="page-container text-center py-5">
+  <div class="error-page-content">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-description">The architecture diagram you were looking for seems to have moved or does not exist.</p>
+    <div class="error-actions mt-4">
+      <a href="{{ '/' | relative_url }}" class="btn btn-primary">
+        <i class="fa-solid fa-house"></i> Return Home
+      </a>
+      <a href="{{ '/articles/' | relative_url }}" class="btn btn-secondary">
+        <i class="fa-solid fa-book-open"></i> Browse Articles
+      </a>
+    </div>
+  </div>
+</div>

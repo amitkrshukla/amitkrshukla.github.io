@@ -1,0 +1,104 @@
+---
+layout: default
+title: "All Articles & Insights"
+subtitle: "Technical architecture guides, Java deep dives, reactive systems, and enterprise design patterns"
+---
+
+<div class="page-container">
+  <header class="page-header text-center">
+    <h1 class="page-title">Articles & Architectural Insights</h1>
+    <p class="page-subtitle">Explorations in Java 17/21, Spring Boot, Reactive Microservices, Kafka, and Cloud-Native Systems</p>
+    
+    <!-- Filter bar -->
+    <div class="filter-controls">
+      <div class="category-filters" id="category-filters">
+        <button class="filter-btn active" data-filter="all">All Articles ({{ site.posts.size }})</button>
+        {% for cat in site.data.categories %}
+          {% assign count = site.posts | where_exp: "item", "item.categories contains cat.name or item.categories contains cat.slug" | size %}
+          {% if count > 0 %}
+            <button class="filter-btn" data-filter="{{ cat.slug }}">{{ cat.icon }} {{ cat.name }} ({{ count }})</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="article-search-bar">
+        <i class="fa-solid fa-filter"></i>
+        <input type="text" id="article-filter-input" placeholder="Quick filter by keyword, tag, or title...">
+      </div>
+    </div>
+  </header>
+
+  <div class="posts-grid" id="articles-list">
+    {% for post in site.posts %}
+      <div class="filterable-article" 
+           data-title="{{ post.title | downcase }}" 
+           data-excerpt="{{ post.description | default: post.excerpt | strip_html | downcase }}"
+           data-categories="{% for c in post.categories %}{{ c | downcase }} {% endfor %}"
+           data-tags="{% for t in post.tags %}{{ t | downcase }} {% endfor %}">
+        {% include post-card.html post=post %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div id="no-articles-found" class="empty-state" style="display: none;">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <h3>No matching articles found</h3>
+    <p>Try searching for other terms like "Spring", "Kafka", "WebFlux", or "Kubernetes".</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.category-filters .filter-btn');
+    const filterInput = document.getElementById('article-filter-input');
+    const articles = document.querySelectorAll('.filterable-article');
+    const emptyState = document.getElementById('no-articles-found');
+
+    let currentCategory = 'all';
+    let currentKeyword = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+      articles.forEach(article => {
+        const title = article.getAttribute('data-title') || '';
+        const excerpt = article.getAttribute('data-excerpt') || '';
+        const cats = article.getAttribute('data-categories') || '';
+        const tags = article.getAttribute('data-tags') || '';
+
+        const matchesCategory = (currentCategory === 'all') || cats.includes(currentCategory);
+        const matchesKeyword = !currentKeyword || 
+          title.includes(currentKeyword) || 
+          excerpt.includes(currentKeyword) || 
+          tags.includes(currentKeyword) || 
+          cats.includes(currentKeyword);
+
+        if (matchesCategory && matchesKeyword) {
+          article.style.display = '';
+          visibleCount++;
+        } else {
+          article.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+
+    if (filterInput) {
+      filterInput.addEventListener('input', (e) => {
+        currentKeyword = e.target.value.trim().toLowerCase();
+        applyFilters();
+      });
+    }
+  });
+</script>

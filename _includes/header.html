@@ -1,0 +1,52 @@
+<header class="site-header">
+  <div class="site-header-container">
+    <a class="site-brand" href="{{ '/' | relative_url }}">
+      <div class="brand-avatar">
+        <span>AS</span>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Amit Kumar Shukla</span>
+        <span class="brand-tagline">Senior Digital Architect</span>
+      </div>
+    </a>
+
+    <nav class="site-nav" id="site-nav">
+      <ul class="nav-links">
+        {% for item in site.data.navigation %}
+          <li>
+            <a href="{{ item.url | relative_url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
+              {{ item.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Search Trigger Button -->
+      <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span class="search-key-hint">Ctrl K</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon dark-icon"></i>
+        <i class="fa-solid fa-sun light-icon"></i>
+      </button>
+
+      <!-- Resume Button -->
+      <a href="{{ '/resume/' | relative_url }}" class="btn btn-sm btn-outline-primary resume-quick-btn">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span>Resume</span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
