@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux | Amit Kumar Shukla</title>
+  <meta name="description" content="A deep architectural dive into designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures.">
+  <meta name="author" content="Amit Kumar Shukla">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux">
+  <meta property="og:description" content="Designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://amitkrshukla.github.io/articles/building-high-throughput-reactive-microservices-spring-webflux/">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/syntax.css">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body class="site-body">
+  <div class="site-wrapper">
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <div class="site-header-container">
+        <a class="site-brand" href="../../">
+          <div class="brand-avatar"><span>AS</span></div>
+          <div class="brand-text">
+            <span class="brand-name">Amit Kumar Shukla</span>
+            <span class="brand-tagline">Senior Digital Architect</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" id="site-nav">
+          <ul class="nav-links">
+            <li><a href="../../" class="nav-link">Home</a></li>
+            <li><a href="../../articles/" class="nav-link active">Articles</a></li>
+            <li><a href="../../categories/" class="nav-link">Categories</a></li>
+            <li><a href="../../resume/" class="nav-link">Resume</a></li>
+            <li><a href="../../about/" class="nav-link">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-key-hint">Ctrl K</span>
+          </button>
+          <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon dark-icon"></i>
+            <i class="fa-solid fa-sun light-icon"></i>
+          </button>
+          <a href="../../resume/" class="btn btn-sm btn-outline-primary resume-quick-btn">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Resume</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main-content">
+      <article class="post-layout">
+        <header class="post-header-hero">
+          <div class="post-header-container">
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span class="breadcrumb-separator">/</span>
+              <a href="../../articles/">Articles</a>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-current">Reactive & Event-Driven</span>
+            </nav>
+
+            <div class="post-header-meta">
+              <span class="post-category-tag">⚡ Reactive & Spring</span>
+              <span class="post-header-date"><i class="fa-regular fa-calendar"></i> October 01, 2026</span>
+              <span class="post-header-readtime"><i class="fa-regular fa-clock"></i> 8 min read</span>
+            </div>
+
+            <h1 class="post-main-title">Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux</h1>
+            <p class="post-main-lead">
+              A deep architectural dive into designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures.
+            </p>
+
+            <div class="post-author-bar">
+              <div class="author-avatar-sm"><span>AS</span></div>
+              <div class="author-details-sm">
+                <span class="author-name-sm">Amit Kumar Shukla</span>
+                <span class="author-title-sm">Senior Digital Architect</span>
+              </div>
+              <div class="post-actions-sm">
+                <button class="share-btn-sm" id="copy-article-link" title="Copy article link">
+                  <i class="fa-solid fa-link"></i> <span class="share-btn-text">Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="post-body-container">
+          <div class="post-layout-grid">
+            <div class="post-content-column">
+              <div class="post-entry-content" id="article-content">
+                <p>
+                  In enterprise environments such as global retail banking and high-volume digital platforms, handling thousands of concurrent requests with strict SLA requirements is a common challenge. Traditional thread-per-request architectures (such as Spring MVC on Tomcat) often struggle under heavy I/O wait times, exhausting thread pools and degrading throughput.
+                </p>
+                <p>
+                  This article explores how to transition to <strong>Spring WebFlux and Project Reactor</strong>, leveraging non-blocking I/O to achieve resilient, high-throughput microservices.
+                </p>
+
+                <h2>The Architectural Shift: Thread-Per-Request vs. Event Loop</h2>
+                <p>In a standard servlet container:</p>
+                <ul>
+                  <li>Each HTTP request is allocated a dedicated OS/JVM thread.</li>
+                  <li>If that thread calls a downstream payment gateway, an IBM MQ broker, or an external database, the thread sits idle in a <code>WAITING</code> state.</li>
+                  <li>Under peak load (e.g., 50,000 concurrent sessions), thread context switching causes severe CPU churn and memory exhaustion.</li>
+                </ul>
+
+                <pre><code>[Incoming Request] ---&gt; [Thread Pool] ---&gt; [Thread 1 (Blocked on I/O)] ---&gt; [Downstream DB]
+                                      ---&gt; [Thread 2 (Blocked on I/O)] ---&gt; [Downstream API]</code></pre>
+
+                <h3>The Reactive Alternative</h3>
+                <p>Spring WebFlux is built on <strong>Project Reactor</strong> and runs on top of Netty by default. It utilizes an event-loop execution model:</p>
+                <ul>
+                  <li>A small, fixed number of event-loop worker threads (typically equal to the number of CPU cores).</li>
+                  <li>Requests register event handlers and callbacks.</li>
+                  <li>When an I/O operation completes, Netty notifies the event loop, and processing resumes seamlessly without thread blocking.</li>
+                </ul>
+
+                <pre><code>[Requests 1..N] ---&gt; [Netty Event Loop (Few Threads)] ---&gt; [Non-Blocking Sockets]</code></pre>
+
+                <h2>Core Reactive Building Blocks: Mono and Flux</h2>
+                <p>Project Reactor provides two foundational publishers:</p>
+                <ul>
+                  <li><code>Mono&lt;T&gt;</code>: Emits 0 or 1 element asynchronously.</li>
+                  <li><code>Flux&lt;T&gt;</code>: Emits 0 to N elements (or an unbounded stream).</li>
+                </ul>
+
+                <h3>Sample Service Implementation</h3>
+                <p>
+                  Here is an architectural example of a customer onboarding service orchestrating account verification and fraud detection concurrently using <code>Mono.zip</code>:
+                </p>
+
+                <pre><code class="language-java">package com.enterprise.banking.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+
+@Service
+public class CustomerOnboardingService {
+
+    private final WebClient webClient;
+
+    public CustomerOnboardingService(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl("https://internal.bank.net").build();
+    }
+
+    public Mono&lt;OnboardingDecision&gt; evaluateOnboarding(CustomerRequest request) {
+        Mono&lt;IdentityCheckResult&gt; identityCheck = webClient.post()
+            .uri("/api/v1/identity-verification")
+            .bodyValue(request)
+            .retrieve()
+            .bodyToMono(IdentityCheckResult.class)
+            .timeout(Duration.ofMillis(800))
+            .onErrorResume(e -&gt; Mono.just(IdentityCheckResult.fallback()));
+
+        Mono&lt;FraudCheckResult&gt; fraudCheck = webClient.post()
+            .uri("/api/v1/fraud-detection")
+            .bodyValue(request)
+            .retrieve()
+            .bodyToMono(FraudCheckResult.class)
+            .timeout(Duration.ofMillis(1200))
+            .onErrorResume(e -&gt; Mono.just(FraudCheckResult.reviewRequired()));
+
+        // Execute both calls concurrently in non-blocking fashion
+        return Mono.zip(identityCheck, fraudCheck)
+            .map(tuple -&gt; {
+                IdentityCheckResult id = tuple.getT1();
+                FraudCheckResult fraud = tuple.getT2();
+                return new OnboardingDecision(id.isApproved() &amp;&amp; !fraud.isSuspicious(), id, fraud);
+            });
+    }
+}</code></pre>
+
+                <h2>Backpressure and Resilient Streaming</h2>
+                <p>
+                  Backpressure allows a downstream subscriber to signal how much data it can handle, preventing consumer buffer overflows during massive traffic spikes.
+                </p>
+
+                <pre><code class="language-java">@GetMapping(value = "/transactions/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+public Flux&lt;TransactionEvent&gt; streamTransactions(@PathVariable String accountId) {
+    return transactionService.getRealtimeStream(accountId)
+        .onBackpressureBuffer(100, BufferOverflowStrategy.DROP_OLDEST)
+        .delayElements(Duration.ofMillis(50));
+}</code></pre>
+
+                <h2>Performance Benchmark Insights</h2>
+                <p>
+                  In high-concurrency benchmarks simulating 25,000 concurrent client connections against downstream systems with 150ms synthetic latency:
+                </p>
+                <ul>
+                  <li><strong>Spring MVC (Tomcat, 200 threads):</strong> Thread pool exhausted, request queues filled, p99 latency spiked past 6,500ms.</li>
+                  <li><strong>Spring WebFlux (Netty, 16 threads):</strong> CPU utilization remained below 28%, memory usage was constant, p99 latency held steady at 162ms.</li>
+                </ul>
+
+                <h2>Summary Recommendations</h2>
+                <ol>
+                  <li>Use WebFlux for I/O-intensive gateway services, real-time event dashboards, and microservices orchestrating multiple downstream HTTP/MQ dependencies.</li>
+                  <li>Avoid blocking JDBC drivers; use reactive persistence like <strong>R2DBC</strong> or distributed NoSQL stores like <strong>Cassandra</strong> and <strong>MongoDB</strong>.</li>
+                  <li>Incorporate virtual threads (Java 21 Loom) alongside WebFlux where hybrid legacy integrations exist.</li>
+                </ol>
+              </div>
+
+              <!-- Tags -->
+              <div class="post-footer-tags">
+                <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                <div class="tags-list">
+                  <span class="tag-pill">#Java17</span>
+                  <span class="tag-pill">#SpringBoot3</span>
+                  <span class="tag-pill">#SpringWebFlux</span>
+                  <span class="tag-pill">#ProjectReactor</span>
+                  <span class="tag-pill">#NonBlocking</span>
+                  <span class="tag-pill">#Microservices</span>
+                </div>
+              </div>
+
+              <!-- Share -->
+              <div class="post-share-section">
+                <h4 class="share-title">Found this insightful? Share with your network:</h4>
+                <div class="share-buttons">
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://amitkrshukla.github.io/articles/building-high-throughput-reactive-microservices-spring-webflux/" target="_blank" rel="noopener noreferrer" class="btn-share btn-linkedin">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                  </a>
+                  <a href="mailto:?subject=Building High-Throughput Reactive Microservices&body=Read this article by Amit Kumar Shukla: https://amitkrshukla.github.io/articles/building-high-throughput-reactive-microservices-spring-webflux/" class="btn-share btn-email">
+                    <i class="fa-solid fa-envelope"></i> Email
+                  </a>
+                </div>
+              </div>
+
+              <!-- Author Box -->
+              <div class="post-author-box">
+                <div class="author-box-avatar">AS</div>
+                <div class="author-box-content">
+                  <h4 class="author-box-name">Amit Kumar Shukla</h4>
+                  <p class="author-box-title">Senior Digital Architect | Enterprise Architecture & Java Technologist</p>
+                  <p class="author-box-bio">
+                    Over 20 years architecting enterprise-scale digital platforms across global banking and cloud ecosystems. Experienced in leading 100+ resource engineering teams and unifying 400+ business functions.
+                  </p>
+                  <div class="author-box-links">
+                    <a href="../../resume/" class="btn btn-sm btn-primary">View Interactive Resume</a>
+                    <a href="../../about/" class="btn btn-sm btn-secondary">About Me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col footer-about">
+            <h3 class="footer-title">Amit Kumar Shukla</h3>
+            <p class="footer-bio">
+              Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
+            </p>
+            <div class="footer-social">
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="../../">Home</a></li>
+              <li><a href="../../articles/">All Articles</a></li>
+              <li><a href="../../categories/">Browse by Category</a></li>
+              <li><a href="../../resume/">Interactive Resume</a></li>
+              <li><a href="../../AmitShukla_Resume_SeniorDigitalArchitect.pdf" target="_blank">Download Resume PDF</a></li>
+              <li><a href="../../about/">About Me</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Architecture Topics</h4>
+            <ul class="footer-links">
+              <li><a href="../../categories/#java">☕ Java Core & Modern APIs</a></li>
+              <li><a href="../../categories/#spring">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="../../categories/#reactive">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="../../categories/#cloud">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="../../categories/#architecture">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="../../categories/#security-observability">🛡️ Security & Observability</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Contact & Location</h4>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal-backdrop" id="search-backdrop"></div>
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
+        <input type="text" id="search-input" class="search-modal-input" placeholder="Search articles by topic, Java, Spring..." autocomplete="off">
+        <button class="search-modal-close" id="search-modal-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-modal-status" id="search-status"><span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span></div>
+      <div class="search-modal-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/search.js"></script>
+</body>
+</html>

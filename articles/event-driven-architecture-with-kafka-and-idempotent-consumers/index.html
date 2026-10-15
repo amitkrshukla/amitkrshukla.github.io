@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics | Amit Kumar Shukla</title>
+  <meta name="description" content="How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms.">
+  <meta name="author" content="Amit Kumar Shukla">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics">
+  <meta property="og:description" content="How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://amitkrshukla.github.io/articles/event-driven-architecture-with-kafka-and-idempotent-consumers/">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/syntax.css">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body class="site-body">
+  <div class="site-wrapper">
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <div class="site-header-container">
+        <a class="site-brand" href="../../">
+          <div class="brand-avatar"><span>AS</span></div>
+          <div class="brand-text">
+            <span class="brand-name">Amit Kumar Shukla</span>
+            <span class="brand-tagline">Senior Digital Architect</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" id="site-nav">
+          <ul class="nav-links">
+            <li><a href="../../" class="nav-link">Home</a></li>
+            <li><a href="../../articles/" class="nav-link active">Articles</a></li>
+            <li><a href="../../categories/" class="nav-link">Categories</a></li>
+            <li><a href="../../resume/" class="nav-link">Resume</a></li>
+            <li><a href="../../about/" class="nav-link">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-key-hint">Ctrl K</span>
+          </button>
+          <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon dark-icon"></i>
+            <i class="fa-solid fa-sun light-icon"></i>
+          </button>
+          <a href="../../resume/" class="btn btn-sm btn-outline-primary resume-quick-btn">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Resume</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main-content">
+      <article class="post-layout">
+        <header class="post-header-hero">
+          <div class="post-header-container">
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span class="breadcrumb-separator">/</span>
+              <a href="../../articles/">Articles</a>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-current">Reactive & Event-Driven</span>
+            </nav>
+
+            <div class="post-header-meta">
+              <span class="post-category-tag">⚡ Reactive & Event-Driven</span>
+              <span class="post-header-date"><i class="fa-regular fa-calendar"></i> August 20, 2026</span>
+              <span class="post-header-readtime"><i class="fa-regular fa-clock"></i> 9 min read</span>
+            </div>
+
+            <h1 class="post-main-title">Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics</h1>
+            <p class="post-main-lead">
+              How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms.
+            </p>
+
+            <div class="post-author-bar">
+              <div class="author-avatar-sm"><span>AS</span></div>
+              <div class="author-details-sm">
+                <span class="author-name-sm">Amit Kumar Shukla</span>
+                <span class="author-title-sm">Senior Digital Architect</span>
+              </div>
+              <div class="post-actions-sm">
+                <button class="share-btn-sm" id="copy-article-link" title="Copy article link">
+                  <i class="fa-solid fa-link"></i> <span class="share-btn-text">Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="post-body-container">
+          <div class="post-layout-grid">
+            <div class="post-content-column">
+              <div class="post-entry-content" id="article-content">
+                <p>
+                  In mission-critical banking transactions, network blips and node restarts are guaranteed to happen. In distributed systems, messages are delivered with <strong>at-least-once</strong> semantics by default. If a payment event or balance deduction message is processed twice due to a consumer retry or network reconnect, the outcome can be catastrophic.
+                </p>
+                <p>
+                  This article details how to architect an event-driven system with <strong>Apache Kafka</strong> that ensures strict idempotency and zero data loss.
+                </p>
+
+                <h2>The Dual-Write Problem</h2>
+                <p>
+                  A common architectural trap in microservices is the "dual-write" problem: updating a local database and publishing a message to Kafka in the same HTTP transaction.
+                </p>
+
+                <pre><code class="language-java">// Anti-Pattern: Non-atomic dual write
+@Transactional
+public void processPayment(Payment payment) {
+    paymentRepository.save(payment);          // Step 1: DB Commit
+    kafkaTemplate.send("payment-events", ...); // Step 2: What if Kafka or network fails here?
+}</code></pre>
+
+                <p>
+                  If the database commit succeeds but the network drops before Kafka acknowledges the message, the system is left in an inconsistent state.
+                </p>
+
+                <h3>The Solution: Transactional Outbox Pattern</h3>
+                <p>
+                  To ensure atomic state changes and event publishing without expensive distributed two-phase commits (2PC/XA), we use the <strong>Transactional Outbox Pattern</strong>:
+                </p>
+                <ol>
+                  <li>Write the business entity AND an outbox record into the database within the same local ACID transaction.</li>
+                  <li>A lightweight background publisher (or Debezium CDC) reads uncommitted events from the outbox table and publishes them to Kafka.</li>
+                  <li>Upon acknowledgment from Kafka, the outbox record is marked as sent.</li>
+                </ol>
+
+                <pre><code>[Service Request] ──> [ACID Transaction] ──> [Order Table]
+                                        └──> [Outbox Table]
+                                                   │
+                                                   ▼
+                                         [Outbox Relay / Debezium]
+                                                   │
+                                                   ▼
+                                            [Kafka Cluster]</code></pre>
+
+                <h2>Designing Idempotent Consumers</h2>
+                <p>
+                  Regardless of how clean your producers are, Kafka consumers will occasionally receive duplicate messages (rebalances, heartbeat timeouts, or retries). Therefore, <strong>consumers must be architected to be idempotent</strong>.
+                </p>
+                <p>
+                  An idempotent operation is one that can be applied multiple times without changing the result beyond the initial application.
+                </p>
+
+                <h3>Key Strategies for Consumer Idempotency</h3>
+
+                <h4>1. Unique Business Event Identifier</h4>
+                <p>Every event produced to Kafka must include a unique <code>eventId</code> or <code>idempotencyKey</code> in its metadata or header:</p>
+
+                <pre><code class="language-json">{
+  "eventId": "evt_98765_4321_abcd",
+  "eventType": "ACCOUNT_DEBITED",
+  "aggregateId": "ACC-100293",
+  "timestamp": "2026-08-20T11:15:00Z",
+  "payload": {
+    "amount": 250.00,
+    "currency": "CAD"
+  }
+}</code></pre>
+
+                <h4>2. Database Idempotency Table Check</h4>
+                <p>
+                  Before applying any side-effects (e.g. updating a customer balance), the consumer checks an <code>idempotent_consumer_events</code> table within an ACID transaction:
+                </p>
+
+                <pre><code class="language-java">@Service
+public class PaymentEventHandler {
+
+    private final ProcessedEventRepository eventRepo;
+    private final AccountBalanceService balanceService;
+
+    @Transactional
+    public void handlePaymentDebited(PaymentEvent event) {
+        // Step 1: Attempt to register event
+        boolean isNew = eventRepo.insertIfAbsent(event.getEventId(), event.getEventType());
+        if (!isNew) {
+            log.info("Duplicate event ignored: {}", event.getEventId());
+            return; // Idempotent skip
+        }
+
+        // Step 2: Apply business logic safely
+        balanceService.applyDebit(event.getAggregateId(), event.getPayload().getAmount());
+    }
+}</code></pre>
+
+                <h2>Transactional Producer Semantics in Spring Kafka</h2>
+                <p>
+                  Spring Boot allows you to declare transactional templates that integrate Kafka with Spring's <code>PlatformTransactionManager</code>:
+                </p>
+
+                <pre><code class="language-java">@Bean
+public KafkaTransactionManager&lt;String, String&gt; kafkaTransactionManager(
+        ProducerFactory&lt;String, String&gt; producerFactory) {
+    return new KafkaTransactionManager&lt;&gt;(producerFactory);
+}</code></pre>
+
+                <h2>Summary of Architectural Guidelines</h2>
+                <ul>
+                  <li>Always use the <strong>Transactional Outbox Pattern</strong> to eliminate dual writes.</li>
+                  <li>Assign stable, globally unique <code>eventId</code>s at the source of origin.</li>
+                  <li>Enforce idempotent consumer logic using unique database constraints or distributed deduplication filters (Redis).</li>
+                  <li>Configure <code>acks=all</code> and <code>enable.idempotence=true</code> on all Kafka producers.</li>
+                </ul>
+              </div>
+
+              <!-- Tags -->
+              <div class="post-footer-tags">
+                <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                <div class="tags-list">
+                  <span class="tag-pill">#ApacheKafka</span>
+                  <span class="tag-pill">#EventDriven</span>
+                  <span class="tag-pill">#Idempotency</span>
+                  <span class="tag-pill">#Banking</span>
+                  <span class="tag-pill">#DistributedSystems</span>
+                  <span class="tag-pill">#IBMMQ</span>
+                </div>
+              </div>
+
+              <!-- Share -->
+              <div class="post-share-section">
+                <h4 class="share-title">Found this insightful? Share with your network:</h4>
+                <div class="share-buttons">
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://amitkrshukla.github.io/articles/event-driven-architecture-with-kafka-and-idempotent-consumers/" target="_blank" rel="noopener noreferrer" class="btn-share btn-linkedin">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                  </a>
+                  <a href="mailto:?subject=Event-Driven Architecture with Kafka&body=Read this article by Amit Kumar Shukla: https://amitkrshukla.github.io/articles/event-driven-architecture-with-kafka-and-idempotent-consumers/" class="btn-share btn-email">
+                    <i class="fa-solid fa-envelope"></i> Email
+                  </a>
+                </div>
+              </div>
+
+              <!-- Author Box -->
+              <div class="post-author-box">
+                <div class="author-box-avatar">AS</div>
+                <div class="author-box-content">
+                  <h4 class="author-box-name">Amit Kumar Shukla</h4>
+                  <p class="author-box-title">Senior Digital Architect | Enterprise Architecture & Java Technologist</p>
+                  <p class="author-box-bio">
+                    Over 20 years architecting enterprise-scale digital platforms across global banking and cloud ecosystems. Experienced in leading 100+ resource engineering teams and unifying 400+ business functions.
+                  </p>
+                  <div class="author-box-links">
+                    <a href="../../resume/" class="btn btn-sm btn-primary">View Interactive Resume</a>
+                    <a href="../../about/" class="btn btn-sm btn-secondary">About Me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col footer-about">
+            <h3 class="footer-title">Amit Kumar Shukla</h3>
+            <p class="footer-bio">
+              Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
+            </p>
+            <div class="footer-social">
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="../../">Home</a></li>
+              <li><a href="../../articles/">All Articles</a></li>
+              <li><a href="../../categories/">Browse by Category</a></li>
+              <li><a href="../../resume/">Interactive Resume</a></li>
+              <li><a href="../../AmitShukla_Resume_SeniorDigitalArchitect.pdf" target="_blank">Download Resume PDF</a></li>
+              <li><a href="../../about/">About Me</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Architecture Topics</h4>
+            <ul class="footer-links">
+              <li><a href="../../categories/#java">☕ Java Core & Modern APIs</a></li>
+              <li><a href="../../categories/#spring">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="../../categories/#reactive">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="../../categories/#cloud">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="../../categories/#architecture">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="../../categories/#security-observability">🛡️ Security & Observability</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Contact & Location</h4>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal-backdrop" id="search-backdrop"></div>
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
+        <input type="text" id="search-input" class="search-modal-input" placeholder="Search articles by topic, Java, Spring..." autocomplete="off">
+        <button class="search-modal-close" id="search-modal-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-modal-status" id="search-status"><span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span></div>
+      <div class="search-modal-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/search.js"></script>
+</body>
+</html>
