@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Beyond the Anemic Domain Model: Leveraging Java 17 and Spring Data for Bulletproof Business Logic | Amit Kumar Shukla</title>
+  <meta name="description" content="Moving beyond anemic domain models in enterprise Java. Harness Java 17 records for immutable value objects, sealed interfaces for exhaustive state machines, and Spring Data JPA for bulletproof business logic.">
+  <meta name="author" content="Amit Kumar Shukla">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Beyond the Anemic Domain Model: Leveraging Java 17 and Spring Data for Bulletproof Business Logic">
+  <meta property="og:description" content="Moving beyond anemic domain models in enterprise Java. Harness Java 17 records for immutable value objects, sealed interfaces for exhaustive state machines, and Spring Data JPA for bulletproof business logic.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://amitkrshukla.github.io/articles/beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data/">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/syntax.css">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body class="site-body">
+  <div class="site-wrapper">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="site-header-container">
+        <a class="site-brand" href="../../">
+          <div class="brand-avatar"><span>AS</span></div>
+          <div class="brand-text">
+            <span class="brand-name">Amit Kumar Shukla</span>
+            <span class="brand-tagline">Senior Digital Architect</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" id="site-nav">
+          <ul class="nav-links">
+            <li><a href="../../" class="nav-link">Home</a></li>
+            <li><a href="../../articles/" class="nav-link active">Articles</a></li>
+            <li><a href="../../categories/" class="nav-link">Categories</a></li>
+            <li><a href="../../resume/" class="nav-link">Resume</a></li>
+            <li><a href="../../about/" class="nav-link">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-key-hint">Ctrl K</span>
+          </button>
+          <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon dark-icon"></i>
+            <i class="fa-solid fa-sun light-icon"></i>
+          </button>
+          <a href="../../resume/" class="btn btn-sm btn-outline-primary resume-quick-btn">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Resume</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main-content">
+      <article class="post-layout">
+        <header class="post-header-hero">
+          <div class="post-header-container">
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span class="breadcrumb-separator">/</span>
+              <a href="../../articles/">Articles</a>
+              <span class="breadcrumb-separator">/</span>
+              <a href="../../categories/java/">Java Core & Modern APIs</a>
+            </nav>
+
+            <div class="post-header-meta">
+              <span class="post-category-tag">☕ Java Core & Modern APIs</span>
+              <span class="post-header-date"><i class="fa-regular fa-calendar"></i> October 15, 2026</span>
+              <span class="post-header-readtime"><i class="fa-regular fa-clock"></i> 8 min read</span>
+            </div>
+
+            <h1 class="post-main-title">Beyond the Anemic Domain Model: Leveraging Java 17 and Spring Data for Bulletproof Business Logic</h1>
+            <p class="post-main-lead">
+              Most enterprise Java applications suffer from a quiet architectural code smell: The Anemic Domain Model. Here is how to design domain models where illegal states are impossible to represent at compile-time using modern Java 17 records, sealed hierarchies, and Spring Data JPA.
+            </p>
+
+            <div class="post-author-bar">
+              <div class="author-avatar-sm"><span>AS</span></div>
+              <div class="author-details-sm">
+                <span class="author-name-sm">Amit Kumar Shukla</span>
+                <span class="author-title-sm">Senior Digital Architect</span>
+              </div>
+              <div class="post-actions-sm">
+                <button class="share-btn-sm" id="copy-article-link" title="Copy article link">
+                  <i class="fa-solid fa-link"></i> <span class="share-btn-text">Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="post-body-container">
+          <div class="post-layout-grid">
+            <div class="post-content-column">
+              <div class="post-entry-content" id="article-content">
+                <p>
+                  Most enterprise Java applications suffer from a quiet architectural code smell: <strong>The Anemic Domain Model</strong>.
+                </p>
+                <p>
+                  We’ve all seen it. Entities are designed as passive data bags filled with private fields, boilerplate getters, open setters, and no-arg constructors. The actual business logic is then stripped out and dumped into sprawling, procedural <code>@Service</code> classes. The result? Mutable state floats everywhere, and illegal states (like an order that is simultaneously <em>Shipped</em> and <em>Cancelled</em>) are caught only at runtime—or worse, quietly persisted to the database.
+                </p>
+                <p>
+                  <strong>What if we could design domain models where illegal states are impossible to represent at compile-time?</strong>
+                </p>
+                <p>
+                  In this post, we’ll explore how to harness modern <strong>Java 17</strong> features—specifically <strong>Records</strong> and <strong>Sealed Classes/Interfaces</strong>—alongside <strong>Spring Data JPA</strong> to write concise, highly safe, and robust enterprise domain models.
+                </p>
+
+                <h2>1. The Cost of Mutability in Traditional Domain Design</h2>
+                <p>
+                  In a classic JPA setup, entities require default constructors and mutable fields to let Hibernate hydrate objects via reflection. While functional for basic CRUD, this opens the door to developer error:
+                </p>
+
+                <pre><code class="language-java">// Traditional mutable approach
+Order order = orderRepository.findById(id);
+order.setStatus(OrderStatus.SHIPPED); 
+// Oops! We updated the status without checking if it was previously paid or cancelled.</code></pre>
+
+                <p>
+                  When business rules are scattered across services, maintaining invariants becomes a game of defensive programming (<code>if/else</code> checks everywhere).
+                </p>
+                <p>
+                  By shifting toward immutability and type-driven design, we can force the compiler to enforce our state machine rules.
+                </p>
+
+                <h2>2. Modeling Immutable Value Objects with Java 17 Records</h2>
+                <p>
+                  In Domain-Driven Design (DDD), <strong>Value Objects</strong> (like <code>Money</code>, <code>Address</code>, or <code>EmailAddress</code>) represent descriptive aspects of the domain with no conceptual identity. Because they are defined entirely by their attributes, they should never change after creation.
+                </p>
+                <p>
+                  Hibernate 6.x+ natively supports Java records as <code>@Embeddable</code> types, letting us write immutability right out of the box.
+                </p>
+
+                <pre><code class="language-java">@Embeddable
+public record Money(
+    @Column(name = "amount", nullable = false)
+    BigDecimal amount,
+    
+    @Column(name = "currency", nullable = false, length = 3)
+    String currency
+) {
+    // Compact constructor for strict invariant validation
+    public Money {
+        Objects.requireNonNull(amount, "Amount cannot be null");
+        Objects.requireNonNull(currency, "Currency cannot be null");
+        if (amount.compareTo(BigDecimal.ZERO) &lt; 0) {
+            throw new IllegalArgumentException("Monetary amount cannot be negative");
+        }
+    }
+
+    public Money add(Money other) {
+        if (!this.currency.equals(other.currency())) {
+            throw new IllegalArgumentException("Currency mismatch: " + this.currency + " vs " + other.currency());
+        }
+        return new Money(this.amount.add(other.amount()), this.currency);
+    }
+}</code></pre>
+
+                <h3>Why this matters:</h3>
+                <ul>
+                  <li><strong>Zero Setters:</strong> Once a <code>Money</code> object is instantiated, its state is frozen.</li>
+                  <li><strong>Fail-Fast Validation:</strong> The compact constructor catches bad data instantly, long before it ever touches a database transaction.</li>
+                </ul>
+
+                <h2>3. Enforcing State Machines with Sealed Interfaces</h2>
+                <p>
+                  Business workflows rarely operate in a vacuum; they follow strict state transitions. Instead of tracking states with fragile boolean flags or plain strings, we can use sealed interfaces to close the state hierarchy explicitly.
+                </p>
+
+                <pre><code class="language-java">public sealed interface OrderState permits PendingState, PaidState, ShippedState, CancelledState {
+    OrderStatus getStatus();
+}
+
+public record PendingState(LocalDateTime createdAt) implements OrderState {
+    @Override public OrderStatus getStatus() { return OrderStatus.PENDING; }
+}
+
+public record PaidState(LocalDateTime paidAt, String transactionId) implements OrderState {
+    @Override public OrderStatus getStatus() { return OrderStatus.PAID; }
+}
+
+public record ShippedState(LocalDateTime shippedAt, String trackingNumber) implements OrderState {
+    @Override public OrderStatus getStatus() { return OrderStatus.SHIPPED; }
+}
+
+public record CancelledState(LocalDateTime cancelledAt, String reason) implements OrderState {
+    @Override public OrderStatus getStatus() { return OrderStatus.CANCELLED; }
+}</code></pre>
+
+                <h3>Exhaustive Pattern Matching for Transitions</h3>
+                <p>
+                  Because <code>OrderState</code> is sealed, the Java compiler knows every possible subclass. When implementing transition logic, we can use modern <code>switch</code> expressions that guarantee compile-time exhaustiveness—no generic default fallback required:
+                </p>
+
+                <pre><code class="language-java">public Order pay(String transactionId) {
+    this.state = switch (this.state) {
+        case PendingState p -&gt; new PaidState(LocalDateTime.now(), transactionId);
+        case PaidState _, ShippedState _, CancelledState _ -&gt; 
+            throw new IllegalStateException("Cannot pay an order in state: " + this.state.getStatus());
+    };
+    return this;
+}</code></pre>
+
+                <p>
+                  If a new state is added to the system later, the compiler will instantly flag every switch statement that fails to account for it.
+                </p>
+
+                <h2>4. Persisting Sealed Hierarchies with Spring Data JPA</h2>
+                <p>
+                  Bridging rich domain models with relational databases often feels awkward, but JPA's inheritance mapping handles polymorphic states cleanly. Using a single-table or joined-table strategy, we can map our sealed domain states directly to persistence entities:
+                </p>
+
+                <pre><code class="language-java">@Entity
+@Table(name = "orders")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "state_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class OrderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    // Entity mapping details...
+}
+
+@Entity
+@DiscriminatorValue("PAID")
+public class PaidOrderEntity extends OrderEntity {
+    private LocalDateTime paidAt;
+    private String transactionId;
+}</code></pre>
+
+                <h2>Final Thoughts: The Shift Toward Compiler-Driven Architecture</h2>
+                <p>
+                  Moving away from anemic domain models isn't just about syntax—it's a philosophical shift in how we handle safety. By leveraging Java 17 records for immutable values and sealed hierarchies for state machines, we delegate validation and architectural enforcement to the compiler.
+                </p>
+                <p>
+                  <strong>When your IDE stops you from writing code that permits illegal business states, your production runtime becomes significantly more resilient.</strong>
+                </p>
+              </div>
+
+              <!-- Tags -->
+              <div class="post-footer-tags">
+                <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                <div class="tags-list">
+                  <span class="tag-pill">#Java17</span>
+                  <span class="tag-pill">#DomainDrivenDesign</span>
+                  <span class="tag-pill">#SpringDataJPA</span>
+                  <span class="tag-pill">#Records</span>
+                  <span class="tag-pill">#SealedInterfaces</span>
+                  <span class="tag-pill">#Immutability</span>
+                </div>
+              </div>
+
+              <!-- Share -->
+              <div class="post-share-section">
+                <h4 class="share-title">Found this insightful? Share with your network:</h4>
+                <div class="share-buttons">
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://amitkrshukla.github.io/articles/beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data/" target="_blank" rel="noopener noreferrer" class="btn-share btn-linkedin">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                  </a>
+                  <a href="mailto:?subject=Beyond the Anemic Domain Model&body=Read this article by Amit Kumar Shukla: https://amitkrshukla.github.io/articles/beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data/" class="btn-share btn-email">
+                    <i class="fa-solid fa-envelope"></i> Email
+                  </a>
+                </div>
+              </div>
+
+              <!-- Author Box -->
+              <div class="post-author-box">
+                <div class="author-box-avatar">AS</div>
+                <div class="author-box-content">
+                  <h4 class="author-box-name">Amit Kumar Shukla</h4>
+                  <p class="author-box-title">Senior Digital Architect | Enterprise Architecture & Java Technologist</p>
+                  <p class="author-box-bio">
+                    Over 20 years architecting enterprise-scale digital platforms across global banking and cloud ecosystems. Experienced in leading 100+ resource engineering teams and unifying 400+ business functions.
+                  </p>
+                  <div class="author-box-links">
+                    <a href="../../resume/" class="btn btn-sm btn-primary">View Interactive Resume</a>
+                    <a href="../../about/" class="btn btn-sm btn-secondary">About Me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col footer-about">
+            <h3 class="footer-title">Amit Kumar Shukla</h3>
+            <p class="footer-bio">
+              Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
+            </p>
+            <div class="footer-social">
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="../../">Home</a></li>
+              <li><a href="../../articles/">All Articles</a></li>
+              <li><a href="../../categories/">Browse by Category</a></li>
+              <li><a href="../../resume/">Interactive Resume</a></li>
+              <li><a href="../../AmitShukla_Resume_SeniorDigitalArchitect.pdf" target="_blank">Download Resume PDF</a></li>
+              <li><a href="../../about/">About Me</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Architecture Topics</h4>
+            <ul class="footer-links">
+              <li><a href="../../categories/java/">☕ Java Core & Modern APIs</a></li>
+              <li><a href="../../categories/spring/">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="../../categories/reactive/">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="../../categories/cloud/">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="../../categories/architecture/">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="../../categories/security-observability/">🛡️ Security & Observability</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Contact & Location</h4>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal-backdrop" id="search-backdrop"></div>
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
+        <input type="text" id="search-input" class="search-modal-input" placeholder="Search articles by topic, Java, Spring..." autocomplete="off">
+        <button class="search-modal-close" id="search-modal-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-modal-status" id="search-status"><span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span></div>
+      <div class="search-modal-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/search.js"></script>
+</body>
+</html>

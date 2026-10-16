@@ -4,6 +4,26 @@
 # Run .\build.ps1 or .\preview.ps1 to automatically generate and synchronize all pages!
 # ==============================================================================
 
+- slug: "beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data"
+  title: "Beyond the Anemic Domain Model: Leveraging Java 17 and Spring Data for Bulletproof Business Logic"
+  category: "java"
+  categories:
+    - "java"
+    - "architecture"
+    - "spring"
+  date: "2026-10-15"
+  display_date: "October 15, 2026"
+  read_time: "8 min read"
+  tags:
+    - "Java17"
+    - "DomainDrivenDesign"
+    - "SpringDataJPA"
+    - "Records"
+    - "SealedInterfaces"
+    - "Immutability"
+  description: "Moving beyond anemic domain models in enterprise Java. Harness Java 17 records for immutable value objects, sealed interfaces for exhaustive state machines, and Spring Data JPA for bulletproof business logic."
+  featured: true
+
 - slug: "securing-cloud-native-java-microservices-jwt-and-zero-trust"
   title: "Securing Cloud-Native Java Microservices with JWT, RBAC & Zero-Trust Architecture"
   category: "security-observability"

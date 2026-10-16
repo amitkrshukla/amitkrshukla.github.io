@@ -285,7 +285,7 @@ function Render-ArticleCard($art, $relPrefix = ".") {
 
     $readTimeHtml = if ($art.read_time) { "<span class=""post-reading-time""><i class=""fa-regular fa-clock""></i> $($art.read_time)</span>" } else { "" }
 
-    return @"
+    $cardHtml = @"
             <article class="post-card filterable-card" data-categories="$catAttr" data-title="$($art.title.ToLower())">
               <div class="post-card-meta">
                 <span class="post-category-tag">$catIcon $catName</span>
@@ -308,6 +308,7 @@ function Render-ArticleCard($art, $relPrefix = ".") {
               </div>
             </article>
 "@
+    return "`n$cardHtml`n"
 }
 
 # ------------------------------------------------------------------------------

@@ -154,14 +154,14 @@
               <div class="category-info">
                 <h3 class="category-name">Java Core & Modern APIs</h3>
                 <p class="category-desc">Modern Java enhancements (Java 17/21+), Virtual Threads (Project Loom), concurrency, memory optimization, and JVM internals.</p>
-                <span class="category-count">3 Articles &bull; View &rarr;</span>
+                <span class="category-count">4 Articles &bull; View &rarr;</span>
               </div>
             </a>            <a href="./categories/spring/" class="category-card" data-category="spring">
               <div class="category-icon">🍃</div>
               <div class="category-info">
                 <h3 class="category-name">Spring Boot & Cloud</h3>
                 <p class="category-desc">Spring Boot 3, Spring Cloud, Spring Data, production-grade microservices, configuration, and cloud integration.</p>
-                <span class="category-count">1 Article &bull; View &rarr;</span>
+                <span class="category-count">2 Articles &bull; View &rarr;</span>
               </div>
             </a>            <a href="./categories/reactive/" class="category-card" data-category="reactive">
               <div class="category-icon">⚡</div>
@@ -182,7 +182,7 @@
               <div class="category-info">
                 <h3 class="category-name">Enterprise Architecture & DDD</h3>
                 <p class="category-desc">Domain-Driven Design (DDD), OpenAPI contracts, high-level system design (HLD), legacy modernization, and fault tolerance.</p>
-                <span class="category-count">2 Articles &bull; View &rarr;</span>
+                <span class="category-count">3 Articles &bull; View &rarr;</span>
               </div>
             </a>            <a href="./categories/security-observability/" class="category-card" data-category="security-observability">
               <div class="category-icon">🛡️</div>
@@ -211,7 +211,7 @@
           <!-- Quick Interactive Category Filter Bar -->
           <div class="filter-controls" style="margin-bottom: 2rem;">
             <div class="category-filters" id="home-category-filters">
-<button class="filter-btn active" data-filter="all">All Articles (4)</button>
+<button class="filter-btn active" data-filter="all">All Articles (5)</button>
               <button class="filter-btn" data-filter="java">☕ Java Core & Modern APIs</button>
               <button class="filter-btn" data-filter="spring">🍃 Spring Boot & Cloud</button>
               <button class="filter-btn" data-filter="reactive">⚡ Reactive & Event-Driven</button>
@@ -227,6 +227,29 @@
           </div>
 
           <div class="posts-grid" id="home-articles-list">
+
+            <article class="post-card filterable-card" data-categories="java architecture spring" data-title="beyond the anemic domain model: leveraging java 17 and spring data for bulletproof business logic">
+              <div class="post-card-meta">
+                <span class="post-category-tag">☕ Java Core & Modern APIs</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> October 15, 2026</span>
+                <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 8 min read</span>
+              </div>
+              <h3 class="post-card-title">
+                <a href="./articles/beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data/">Beyond the Anemic Domain Model: Leveraging Java 17 and Spring Data for Bulletproof Business Logic</a>
+              </h3>
+              <p class="post-card-excerpt">
+                Moving beyond anemic domain models in enterprise Java. Harness Java 17 records for immutable value objects, sealed interfaces for exhaustive state machines, and Spring Data JPA for bulletproof business logic.
+              </p>
+              <div class="post-card-tags">
+                <span class="tag-pill">#Java17</span> <span class="tag-pill">#DomainDrivenDesign</span> <span class="tag-pill">#SpringDataJPA</span> <span class="tag-pill">#Records</span> <span class="tag-pill">#SealedInterfaces</span> <span class="tag-pill">#Immutability</span> 
+              </div>
+              <div class="post-card-footer">
+                <a href="./articles/beyond-the-anemic-domain-model-leveraging-java-17-and-spring-data/" class="read-more-link">
+                  Read Article <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+
             <article class="post-card filterable-card" data-categories="security-observability cloud java" data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture">
               <div class="post-card-meta">
                 <span class="post-category-tag">🛡️ Security & Observability</span>
@@ -247,7 +270,9 @@
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>            <article class="post-card filterable-card" data-categories="reactive architecture" data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics">
+            </article>
+
+            <article class="post-card filterable-card" data-categories="reactive architecture" data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics">
               <div class="post-card-meta">
                 <span class="post-category-tag">⚡ Reactive & Event-Driven</span>
                 <span class="post-date"><i class="fa-regular fa-calendar"></i> August 20, 2026</span>
@@ -267,7 +292,9 @@
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>            <article class="post-card filterable-card" data-categories="architecture java" data-title="enterprise domain-driven design & contract-first openapi architecture">
+            </article>
+
+            <article class="post-card filterable-card" data-categories="architecture java" data-title="enterprise domain-driven design & contract-first openapi architecture">
               <div class="post-card-meta">
                 <span class="post-category-tag">🏛️ Enterprise Architecture & DDD</span>
                 <span class="post-date"><i class="fa-regular fa-calendar"></i> September 15, 2026</span>
@@ -287,7 +314,9 @@
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>            <article class="post-card filterable-card" data-categories="spring reactive java" data-title="building high-throughput reactive microservices with spring boot 3 & webflux">
+            </article>
+
+            <article class="post-card filterable-card" data-categories="spring reactive java" data-title="building high-throughput reactive microservices with spring boot 3 & webflux">
               <div class="post-card-meta">
                 <span class="post-category-tag">🍃 Spring Boot & Cloud</span>
                 <span class="post-date"><i class="fa-regular fa-calendar"></i> October 01, 2026</span>
@@ -307,7 +336,8 @@
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>          </div>
+            </article>
+          </div>
 
           <div id="home-no-articles" class="empty-state" style="display: none;">
             <i class="fa-solid fa-magnifying-glass"></i>
