@@ -1,0 +1,83 @@
+# ==============================================================================
+# Articles Configuration
+# Add, edit, or remove articles here. Each article has its own HTML page in articles/<slug>/
+# Run .\build.ps1 or .\preview.ps1 to automatically generate and synchronize all pages!
+# ==============================================================================
+
+- slug: "securing-cloud-native-java-microservices-jwt-and-zero-trust"
+  title: "Securing Cloud-Native Java Microservices with JWT, RBAC & Zero-Trust Architecture"
+  category: "security-observability"
+  categories:
+    - "security-observability"
+    - "cloud"
+    - "java"
+  date: "2026-07-10"
+  display_date: "July 10, 2026"
+  read_time: "7 min read"
+  tags:
+    - "Security"
+    - "JWT"
+    - "ZeroTrust"
+    - "Kubernetes"
+    - "DevSecOps"
+    - "AWS"
+    - "SpringSecurity"
+  description: "A comprehensive guide to hardening Java 17 and Spring Boot microservices on Kubernetes using OAuth2/OIDC, cryptographically verified JWT tokens, and fine-grained RBAC."
+  featured: true
+
+- slug: "event-driven-architecture-with-kafka-and-idempotent-consumers"
+  title: "Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics"
+  category: "reactive"
+  categories:
+    - "reactive"
+    - "architecture"
+  date: "2026-08-20"
+  display_date: "August 20, 2026"
+  read_time: "9 min read"
+  tags:
+    - "ApacheKafka"
+    - "EventDriven"
+    - "Idempotency"
+    - "Banking"
+    - "DistributedSystems"
+    - "IBMMQ"
+  description: "How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms."
+  featured: true
+
+- slug: "enterprise-domain-driven-design-and-openapi-contracts"
+  title: "Enterprise Domain-Driven Design & Contract-First OpenAPI Architecture"
+  category: "architecture"
+  categories:
+    - "architecture"
+    - "java"
+  date: "2026-09-15"
+  display_date: "September 15, 2026"
+  read_time: "7 min read"
+  tags:
+    - "DomainDrivenDesign"
+    - "OpenAPI"
+    - "ContractFirst"
+    - "Microservices"
+    - "EnterpriseArchitecture"
+  description: "How to govern system-to-system integrations and eliminate distributed monoliths across multi-country teams using DDD bounded contexts and OpenAPI 3.0 specs."
+  featured: true
+
+- slug: "building-high-throughput-reactive-microservices-spring-webflux"
+  title: "Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux"
+  category: "spring"
+  categories:
+    - "spring"
+    - "reactive"
+    - "java"
+  date: "2026-10-01"
+  display_date: "October 01, 2026"
+  read_time: "8 min read"
+  tags:
+    - "Java17"
+    - "SpringBoot3"
+    - "WebFlux"
+    - "ProjectReactor"
+    - "NonBlocking"
+    - "Microservices"
+  description: "A deep architectural dive into designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures."
+  featured: true

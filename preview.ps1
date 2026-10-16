@@ -1,6 +1,12 @@
 # Preview Server for Amit Kumar Shukla's Technical Blog & Portfolio
 # Usage: Run in PowerShell: .\preview.ps1
 
+# Run build.ps1 to synchronize YAML configs into HTML pages before launching preview
+$buildScript = Join-Path $PSScriptRoot "build.ps1"
+if (Test-Path $buildScript) {
+    & $buildScript
+}
+
 $port = 4000
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:$port/")

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -13,18 +13,16 @@
   <meta property="og:title" content="All Articles & Insights | Amit Kumar Shukla">
   <meta property="og:description" content="Technical architecture guides, Java 17/21 deep dives, reactive systems, Kafka event streaming, and enterprise design patterns.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://amitkrshukla.github.io/articles/">
+  <meta property="og:url" content="https://amitkrshukla.github.io/">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Favicon -->
+  <!-- Favicon & Styles -->
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
-
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/syntax.css">
 
@@ -42,13 +40,10 @@
 </head>
 <body class="site-body">
   <div class="site-wrapper">
-    <!-- Header Navigation -->
     <header class="site-header">
       <div class="site-header-container">
         <a class="site-brand" href="../">
-          <div class="brand-avatar">
-            <span>AS</span>
-          </div>
+          <div class="brand-avatar"><span>AS</span></div>
           <div class="brand-text">
             <span class="brand-name">Amit Kumar Shukla</span>
             <span class="brand-tagline">Senior Digital Architect</span>
@@ -57,11 +52,11 @@
 
         <nav class="site-nav" id="site-nav">
           <ul class="nav-links">
-            <li><a href="../" class="nav-link">Home</a></li>
+            <li><a href="../" class="nav-link ">Home</a></li>
             <li><a href="../articles/" class="nav-link active">Articles</a></li>
-            <li><a href="../categories/" class="nav-link">Categories</a></li>
-            <li><a href="../resume/" class="nav-link">Resume</a></li>
-            <li><a href="../about/" class="nav-link">About</a></li>
+            <li><a href="../categories/" class="nav-link ">Categories</a></li>
+            <li><a href="../resume/" class="nav-link ">Resume</a></li>
+            <li><a href="../about/" class="nav-link ">About</a></li>
           </ul>
         </nav>
 
@@ -79,15 +74,12 @@
             <span>Resume</span>
           </a>
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
     <main class="site-main" id="main-content">
       <div class="page-container">
         <header class="page-header text-center">
@@ -97,13 +89,13 @@
           <!-- Filter bar -->
           <div class="filter-controls">
             <div class="category-filters" id="category-filters">
-              <button class="filter-btn active" data-filter="all">All Articles (4)</button>
-              <button class="filter-btn" data-filter="java">☕ Java Core</button>
-              <button class="filter-btn" data-filter="spring">🍃 Spring Boot</button>
-              <button class="filter-btn" data-filter="reactive">⚡ Reactive & Kafka</button>
-              <button class="filter-btn" data-filter="cloud">☁️ Cloud & K8s</button>
-              <button class="filter-btn" data-filter="architecture">🏛️ Architecture & DDD</button>
-              <button class="filter-btn" data-filter="security">🛡️ Security & Observability</button>
+<button class="filter-btn active" data-filter="all">All Articles (4)</button>
+              <button class="filter-btn" data-filter="java">☕ Java Core & Modern APIs</button>
+              <button class="filter-btn" data-filter="spring">🍃 Spring Boot & Cloud</button>
+              <button class="filter-btn" data-filter="reactive">⚡ Reactive & Event-Driven</button>
+              <button class="filter-btn" data-filter="cloud">☁️ Cloud & Kubernetes</button>
+              <button class="filter-btn" data-filter="architecture">🏛️ Enterprise Architecture & DDD</button>
+              <button class="filter-btn" data-filter="security-observability">🛡️ Security & Observability</button>
             </div>
 
             <div class="article-search-bar">
@@ -114,134 +106,87 @@
         </header>
 
         <div class="posts-grid" id="articles-list">
-          <!-- Article 1: Security -->
-          <div class="filterable-article" 
-               data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture" 
-               data-excerpt="a comprehensive guide to hardening java 17 and spring boot microservices on kubernetes using oauth2/oidc, cryptographically verified jwt tokens, and fine-grained rbac."
-               data-categories="security cloud"
-               data-tags="security jwt zerotrust kubernetes devsecops aws springsecurity">
-            <article class="post-card">
+            <article class="post-card filterable-card" data-categories="security-observability cloud java" data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture">
               <div class="post-card-meta">
                 <span class="post-category-tag">🛡️ Security & Observability</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Jul 10, 2026</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> July 10, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 7 min read</span>
               </div>
               <h3 class="post-card-title">
-                <a href="./securing-cloud-native-java-microservices-jwt-and-zero-trust/">Securing Cloud-Native Java Microservices with JWT, RBAC & Zero-Trust Architecture</a>
+                <a href="../articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/">Securing Cloud-Native Java Microservices with JWT, RBAC & Zero-Trust Architecture</a>
               </h3>
               <p class="post-card-excerpt">
                 A comprehensive guide to hardening Java 17 and Spring Boot microservices on Kubernetes using OAuth2/OIDC, cryptographically verified JWT tokens, and fine-grained RBAC.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#Security</span>
-                <span class="tag-pill">#JWT</span>
-                <span class="tag-pill">#ZeroTrust</span>
-                <span class="tag-pill">#Kubernetes</span>
+                <span class="tag-pill">#Security</span> <span class="tag-pill">#JWT</span> <span class="tag-pill">#ZeroTrust</span> <span class="tag-pill">#Kubernetes</span> <span class="tag-pill">#DevSecOps</span> <span class="tag-pill">#AWS</span> <span class="tag-pill">#SpringSecurity</span> 
               </div>
               <div class="post-card-footer">
-                <a href="./securing-cloud-native-java-microservices-jwt-and-zero-trust/" class="read-more-link">
+                <a href="../articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-          </div>
-
-          <!-- Article 2: Kafka -->
-          <div class="filterable-article" 
-               data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics" 
-               data-excerpt="how to design rock-solid event-driven microservices using apache kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms."
-               data-categories="reactive architecture"
-               data-tags="apachekafka eventdriven idempotency banking distributedsystems ibmmq">
-            <article class="post-card">
+            </article>            <article class="post-card filterable-card" data-categories="reactive architecture" data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics">
               <div class="post-card-meta">
                 <span class="post-category-tag">⚡ Reactive & Event-Driven</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2026</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> August 20, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 9 min read</span>
               </div>
               <h3 class="post-card-title">
-                <a href="./event-driven-architecture-with-kafka-and-idempotent-consumers/">Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics</a>
+                <a href="../articles/event-driven-architecture-with-kafka-and-idempotent-consumers/">Event-Driven Architecture with Kafka: Guaranteeing Idempotency & Exactly-Once Semantics</a>
               </h3>
               <p class="post-card-excerpt">
                 How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#ApacheKafka</span>
-                <span class="tag-pill">#EventDriven</span>
-                <span class="tag-pill">#Idempotency</span>
-                <span class="tag-pill">#Banking</span>
+                <span class="tag-pill">#ApacheKafka</span> <span class="tag-pill">#EventDriven</span> <span class="tag-pill">#Idempotency</span> <span class="tag-pill">#Banking</span> <span class="tag-pill">#DistributedSystems</span> <span class="tag-pill">#IBMMQ</span> 
               </div>
               <div class="post-card-footer">
-                <a href="./event-driven-architecture-with-kafka-and-idempotent-consumers/" class="read-more-link">
+                <a href="../articles/event-driven-architecture-with-kafka-and-idempotent-consumers/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-          </div>
-
-          <!-- Article 3: DDD & OpenAPI -->
-          <div class="filterable-article" 
-               data-title="enterprise domain-driven design & contract-first openapi architecture" 
-               data-excerpt="how to govern system-to-system integrations and eliminate distributed monoliths across multi-country teams using ddd bounded contexts and openapi 3.0 specs."
-               data-categories="architecture java"
-               data-tags="domaindrivendesign openapi contractfirst microservices enterprisearchitecture">
-            <article class="post-card">
+            </article>            <article class="post-card filterable-card" data-categories="architecture java" data-title="enterprise domain-driven design & contract-first openapi architecture">
               <div class="post-card-meta">
-                <span class="post-category-tag">🏛️ Enterprise Architecture</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
+                <span class="post-category-tag">🏛️ Enterprise Architecture & DDD</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> September 15, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 7 min read</span>
               </div>
               <h3 class="post-card-title">
-                <a href="./enterprise-domain-driven-design-and-openapi-contracts/">Enterprise Domain-Driven Design & Contract-First OpenAPI Architecture</a>
+                <a href="../articles/enterprise-domain-driven-design-and-openapi-contracts/">Enterprise Domain-Driven Design & Contract-First OpenAPI Architecture</a>
               </h3>
               <p class="post-card-excerpt">
                 How to govern system-to-system integrations and eliminate distributed monoliths across multi-country teams using DDD bounded contexts and OpenAPI 3.0 specs.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#DomainDrivenDesign</span>
-                <span class="tag-pill">#OpenAPI</span>
-                <span class="tag-pill">#ContractFirst</span>
-                <span class="tag-pill">#Governance</span>
+                <span class="tag-pill">#DomainDrivenDesign</span> <span class="tag-pill">#OpenAPI</span> <span class="tag-pill">#ContractFirst</span> <span class="tag-pill">#Microservices</span> <span class="tag-pill">#EnterpriseArchitecture</span> 
               </div>
               <div class="post-card-footer">
-                <a href="./enterprise-domain-driven-design-and-openapi-contracts/" class="read-more-link">
+                <a href="../articles/enterprise-domain-driven-design-and-openapi-contracts/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-          </div>
-
-          <!-- Article 4: WebFlux -->
-          <div class="filterable-article" 
-               data-title="building high-throughput reactive microservices with spring boot 3 & webflux" 
-               data-excerpt="a deep architectural dive into designing non-blocking, event-driven reactive services in java 17 and spring boot 3, contrasting thread-per-request with event-loop architectures."
-               data-categories="reactive spring java"
-               data-tags="java17 springboot3 springwebflux projectreactor nonblocking microservices">
-            <article class="post-card">
+            </article>            <article class="post-card filterable-card" data-categories="spring reactive java" data-title="building high-throughput reactive microservices with spring boot 3 & webflux">
               <div class="post-card-meta">
-                <span class="post-category-tag">⚡ Reactive & Spring</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Oct 01, 2026</span>
+                <span class="post-category-tag">🍃 Spring Boot & Cloud</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> October 01, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 8 min read</span>
               </div>
               <h3 class="post-card-title">
-                <a href="./building-high-throughput-reactive-microservices-spring-webflux/">Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux</a>
+                <a href="../articles/building-high-throughput-reactive-microservices-spring-webflux/">Building High-Throughput Reactive Microservices with Spring Boot 3 & WebFlux</a>
               </h3>
               <p class="post-card-excerpt">
                 A deep architectural dive into designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#Java17</span>
-                <span class="tag-pill">#SpringBoot3</span>
-                <span class="tag-pill">#WebFlux</span>
-                <span class="tag-pill">#ProjectReactor</span>
+                <span class="tag-pill">#Java17</span> <span class="tag-pill">#SpringBoot3</span> <span class="tag-pill">#WebFlux</span> <span class="tag-pill">#ProjectReactor</span> <span class="tag-pill">#NonBlocking</span> <span class="tag-pill">#Microservices</span> 
               </div>
               <div class="post-card-footer">
-                <a href="./building-high-throughput-reactive-microservices-spring-webflux/" class="read-more-link">
+                <a href="../articles/building-high-throughput-reactive-microservices-spring-webflux/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-          </div>
-        </div>
+            </article>        </div>
 
         <div id="no-articles-found" class="empty-state" style="display: none;">
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -251,7 +196,6 @@
       </div>
     </main>
 
-    <!-- Site Footer -->
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-grid">
@@ -261,15 +205,9 @@
               Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
             </p>
             <div class="footer-social">
-              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon">
-                <i class="fa-solid fa-envelope"></i>
-              </a>
-              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
-                <i class="fa-brands fa-github"></i>
-              </a>
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
 
@@ -288,40 +226,31 @@
           <div class="footer-col">
             <h4 class="footer-heading">Architecture Topics</h4>
             <ul class="footer-links">
-              <li><a href="../categories/#java">☕ Java Core & Modern APIs</a></li>
-              <li><a href="../categories/#spring">🍃 Spring Boot & Cloud</a></li>
-              <li><a href="../categories/#reactive">⚡ Reactive & Event-Driven</a></li>
-              <li><a href="../categories/#cloud">☁️ Cloud & Kubernetes</a></li>
-              <li><a href="../categories/#architecture">🏛️ Enterprise Architecture & DDD</a></li>
-              <li><a href="../categories/#security-observability">🛡️ Security & Observability</a></li>
+              <li><a href="../categories/java/">☕ Java Core & Modern APIs</a></li>
+              <li><a href="../categories/spring/">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="../categories/reactive/">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="../categories/cloud/">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="../categories/architecture/">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="../categories/security-observability/">🛡️ Security & Observability</a></li>
             </ul>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Contact & Location</h4>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada
-            </p>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a>
-            </p>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-phone"></i> +1 (236) 863-4703
-            </p>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
-          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top">
-            <i class="fa-solid fa-arrow-up"></i>
-          </button>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Search Modal -->
   <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="search-modal-backdrop" id="search-backdrop"></div>
     <div class="search-modal-box">
@@ -343,7 +272,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const filterBtns = document.querySelectorAll('.category-filters .filter-btn');
       const filterInput = document.getElementById('article-filter-input');
-      const articles = document.querySelectorAll('.filterable-article');
+      const articles = document.querySelectorAll('#articles-list .filterable-card');
       const emptyState = document.getElementById('no-articles-found');
 
       let currentCategory = 'all';
@@ -353,16 +282,10 @@
         let visibleCount = 0;
         articles.forEach(article => {
           const title = article.getAttribute('data-title') || '';
-          const excerpt = article.getAttribute('data-excerpt') || '';
           const cats = article.getAttribute('data-categories') || '';
-          const tags = article.getAttribute('data-tags') || '';
 
           const matchesCategory = (currentCategory === 'all') || cats.includes(currentCategory);
-          const matchesKeyword = !currentKeyword || 
-            title.includes(currentKeyword) || 
-            excerpt.includes(currentKeyword) || 
-            tags.includes(currentKeyword) || 
-            cats.includes(currentKeyword);
+          const matchesKeyword = !currentKeyword || title.includes(currentKeyword);
 
           if (matchesCategory && matchesKeyword) {
             article.style.display = '';

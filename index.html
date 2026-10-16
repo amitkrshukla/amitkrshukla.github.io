@@ -1,37 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Amit Kumar Shukla | Senior Digital Architect & Enterprise Java Technologist</title>
+  <title>Enterprise Architecture, Modern Java & Distributed Systems | Amit Kumar Shukla</title>
   <meta name="description" content="Architectural insights, Java 17/21 innovations, Spring Boot, Reactive Microservices, Cloud-Native AWS/Kubernetes, and Enterprise Systems Design by Amit Kumar Shukla.">
   <meta name="author" content="Amit Kumar Shukla">
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Amit Kumar Shukla | Senior Digital Architect & Enterprise Java Technologist">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Enterprise Architecture, Modern Java & Distributed Systems | Amit Kumar Shukla">
   <meta property="og:description" content="Architectural insights, Java 17/21 innovations, Spring Boot, Reactive Microservices, Cloud-Native AWS/Kubernetes, and Enterprise Systems Design by Amit Kumar Shukla.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://amitkrshukla.github.io/">
-  <meta property="og:site_name" content="Amit Kumar Shukla">
 
-  <!-- Fonts: Inter & Fira Code -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Icons: FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Favicon -->
+  <!-- Favicon & Styles -->
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
-
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/syntax.css">
 
-  <!-- Pre-theme initialization to prevent FOUC -->
   <script>
     (function() {
       const savedTheme = localStorage.getItem('theme');
@@ -46,13 +40,10 @@
 </head>
 <body class="site-body">
   <div class="site-wrapper">
-    <!-- Header Navigation -->
     <header class="site-header">
       <div class="site-header-container">
         <a class="site-brand" href="./">
-          <div class="brand-avatar">
-            <span>AS</span>
-          </div>
+          <div class="brand-avatar"><span>AS</span></div>
           <div class="brand-text">
             <span class="brand-name">Amit Kumar Shukla</span>
             <span class="brand-tagline">Senior Digital Architect</span>
@@ -62,43 +53,33 @@
         <nav class="site-nav" id="site-nav">
           <ul class="nav-links">
             <li><a href="./" class="nav-link active">Home</a></li>
-            <li><a href="./articles/" class="nav-link">Articles</a></li>
-            <li><a href="./categories/" class="nav-link">Categories</a></li>
-            <li><a href="./resume/" class="nav-link">Resume</a></li>
-            <li><a href="./about/" class="nav-link">About</a></li>
+            <li><a href="./articles/" class="nav-link ">Articles</a></li>
+            <li><a href="./categories/" class="nav-link ">Categories</a></li>
+            <li><a href="./resume/" class="nav-link ">Resume</a></li>
+            <li><a href="./about/" class="nav-link ">About</a></li>
           </ul>
         </nav>
 
         <div class="header-actions">
-          <!-- Search Trigger Button -->
           <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
             <i class="fa-solid fa-magnifying-glass"></i>
             <span class="search-key-hint">Ctrl K</span>
           </button>
-
-          <!-- Theme Switcher -->
           <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
             <i class="fa-solid fa-moon dark-icon"></i>
             <i class="fa-solid fa-sun light-icon"></i>
           </button>
-
-          <!-- Resume Button -->
           <a href="./resume/" class="btn btn-sm btn-outline-primary resume-quick-btn">
             <i class="fa-solid fa-file-pdf"></i>
             <span>Resume</span>
           </a>
-
-          <!-- Mobile Hamburger Button -->
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
     <main class="site-main" id="main-content">
       <!-- Hero Section -->
       <section class="hero-section">
@@ -154,7 +135,7 @@
         </div>
       </section>
 
-      <!-- Focus Areas / Categories Section -->
+      <!-- Knowledge Base by Technology (Categories Section) -->
       <section class="section categories-section">
         <div class="section-container">
           <div class="section-header">
@@ -168,70 +149,53 @@
           </div>
 
           <div class="category-grid">
-            <!-- 1. Java Core -->
-            <a href="./categories/#java" class="category-card" data-category="java">
+            <a href="./categories/java/" class="category-card" data-category="java">
               <div class="category-icon">☕</div>
               <div class="category-info">
                 <h3 class="category-name">Java Core & Modern APIs</h3>
                 <p class="category-desc">Modern Java enhancements (Java 17/21+), Virtual Threads (Project Loom), concurrency, memory optimization, and JVM internals.</p>
-                <span class="category-count">1 Article &bull; Explore &rarr;</span>
+                <span class="category-count">3 Articles &bull; View &rarr;</span>
               </div>
-            </a>
-
-            <!-- 2. Spring Boot -->
-            <a href="./categories/#spring" class="category-card" data-category="spring">
+            </a>            <a href="./categories/spring/" class="category-card" data-category="spring">
               <div class="category-icon">🍃</div>
               <div class="category-info">
                 <h3 class="category-name">Spring Boot & Cloud</h3>
                 <p class="category-desc">Spring Boot 3, Spring Cloud, Spring Data, production-grade microservices, configuration, and cloud integration.</p>
-                <span class="category-count">1 Article &bull; Explore &rarr;</span>
+                <span class="category-count">1 Article &bull; View &rarr;</span>
               </div>
-            </a>
-
-            <!-- 3. Reactive & Event-Driven -->
-            <a href="./categories/#reactive" class="category-card" data-category="reactive">
+            </a>            <a href="./categories/reactive/" class="category-card" data-category="reactive">
               <div class="category-icon">⚡</div>
               <div class="category-info">
                 <h3 class="category-name">Reactive & Event-Driven</h3>
                 <p class="category-desc">Non-blocking systems, Spring WebFlux, Project Reactor, RxJava, Apache Kafka, IBM MQ, and real-time streaming.</p>
-                <span class="category-count">2 Articles &bull; Explore &rarr;</span>
+                <span class="category-count">2 Articles &bull; View &rarr;</span>
               </div>
-            </a>
-
-            <!-- 4. Cloud & Kubernetes -->
-            <a href="./categories/#cloud" class="category-card" data-category="cloud">
+            </a>            <a href="./categories/cloud/" class="category-card" data-category="cloud">
               <div class="category-icon">☁️</div>
               <div class="category-info">
                 <h3 class="category-name">Cloud & Kubernetes</h3>
                 <p class="category-desc">AWS architecture, Kubernetes (KCNA), Docker containers, microservices orchestration, and modern DevSecOps.</p>
-                <span class="category-count">1 Article &bull; Explore &rarr;</span>
+                <span class="category-count">1 Article &bull; View &rarr;</span>
               </div>
-            </a>
-
-            <!-- 5. Enterprise Architecture & DDD -->
-            <a href="./categories/#architecture" class="category-card" data-category="architecture">
+            </a>            <a href="./categories/architecture/" class="category-card" data-category="architecture">
               <div class="category-icon">🏛️</div>
               <div class="category-info">
                 <h3 class="category-name">Enterprise Architecture & DDD</h3>
                 <p class="category-desc">Domain-Driven Design (DDD), OpenAPI contracts, high-level system design (HLD), legacy modernization, and fault tolerance.</p>
-                <span class="category-count">2 Articles &bull; Explore &rarr;</span>
+                <span class="category-count">2 Articles &bull; View &rarr;</span>
               </div>
-            </a>
-
-            <!-- 6. Security & Observability -->
-            <a href="./categories/#security-observability" class="category-card" data-category="security-observability">
+            </a>            <a href="./categories/security-observability/" class="category-card" data-category="security-observability">
               <div class="category-icon">🛡️</div>
               <div class="category-info">
                 <h3 class="category-name">Security & Observability</h3>
                 <p class="category-desc">Banking-grade security, JWT tokens, RBAC/IAM, CI/CD with Jenkins, and deep observability via Splunk, Kibana, and AppDynamics.</p>
-                <span class="category-count">1 Article &bull; Explore &rarr;</span>
+                <span class="category-count">1 Article &bull; View &rarr;</span>
               </div>
-            </a>
-          </div>
+            </a>          </div>
         </div>
       </section>
 
-      <!-- Latest Articles Section with Live Interactive Filtering -->
+      <!-- Featured Articles Section with Live Interactive Filtering -->
       <section class="section articles-section">
         <div class="section-container">
           <div class="section-header">
@@ -247,13 +211,13 @@
           <!-- Quick Interactive Category Filter Bar -->
           <div class="filter-controls" style="margin-bottom: 2rem;">
             <div class="category-filters" id="home-category-filters">
-              <button class="filter-btn active" data-filter="all">All Articles (4)</button>
-              <button class="filter-btn" data-filter="java">☕ Java Core</button>
-              <button class="filter-btn" data-filter="spring">🍃 Spring Boot</button>
-              <button class="filter-btn" data-filter="reactive">⚡ Reactive & Kafka</button>
-              <button class="filter-btn" data-filter="cloud">☁️ Cloud & K8s</button>
-              <button class="filter-btn" data-filter="architecture">🏛️ Architecture & DDD</button>
-              <button class="filter-btn" data-filter="security">🛡️ Security & Observability</button>
+<button class="filter-btn active" data-filter="all">All Articles (4)</button>
+              <button class="filter-btn" data-filter="java">☕ Java Core & Modern APIs</button>
+              <button class="filter-btn" data-filter="spring">🍃 Spring Boot & Cloud</button>
+              <button class="filter-btn" data-filter="reactive">⚡ Reactive & Event-Driven</button>
+              <button class="filter-btn" data-filter="cloud">☁️ Cloud & Kubernetes</button>
+              <button class="filter-btn" data-filter="architecture">🏛️ Enterprise Architecture & DDD</button>
+              <button class="filter-btn" data-filter="security-observability">🛡️ Security & Observability</button>
             </div>
 
             <div class="article-search-bar" style="margin-top: 1rem;">
@@ -263,11 +227,10 @@
           </div>
 
           <div class="posts-grid" id="home-articles-list">
-            <!-- Article 1: Security & Zero Trust -->
-            <article class="post-card filterable-card" data-categories="security cloud" data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture" data-keywords="security jwt zero trust kubernetes devsecops aws spring security oauth2 rbac">
+            <article class="post-card filterable-card" data-categories="security-observability cloud java" data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture">
               <div class="post-card-meta">
                 <span class="post-category-tag">🛡️ Security & Observability</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Jul 10, 2026</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> July 10, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 7 min read</span>
               </div>
               <h3 class="post-card-title">
@@ -277,23 +240,17 @@
                 A comprehensive guide to hardening Java 17 and Spring Boot microservices on Kubernetes using OAuth2/OIDC, cryptographically verified JWT tokens, and fine-grained RBAC.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#Security</span>
-                <span class="tag-pill">#JWT</span>
-                <span class="tag-pill">#ZeroTrust</span>
-                <span class="tag-pill">#Kubernetes</span>
+                <span class="tag-pill">#Security</span> <span class="tag-pill">#JWT</span> <span class="tag-pill">#ZeroTrust</span> <span class="tag-pill">#Kubernetes</span> <span class="tag-pill">#DevSecOps</span> <span class="tag-pill">#AWS</span> <span class="tag-pill">#SpringSecurity</span> 
               </div>
               <div class="post-card-footer">
                 <a href="./articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-
-            <!-- Article 2: Kafka & Idempotency -->
-            <article class="post-card filterable-card" data-categories="reactive architecture" data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics" data-keywords="apache kafka event driven idempotency banking distributed systems ibm mq outbox reactive">
+            </article>            <article class="post-card filterable-card" data-categories="reactive architecture" data-title="event-driven architecture with kafka: guaranteeing idempotency & exactly-once semantics">
               <div class="post-card-meta">
                 <span class="post-category-tag">⚡ Reactive & Event-Driven</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2026</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> August 20, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 9 min read</span>
               </div>
               <h3 class="post-card-title">
@@ -303,23 +260,17 @@
                 How to design rock-solid event-driven microservices using Apache Kafka, transactional outbox pattern, and idempotent consumer semantics in financial platforms.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#ApacheKafka</span>
-                <span class="tag-pill">#EventDriven</span>
-                <span class="tag-pill">#Idempotency</span>
-                <span class="tag-pill">#Banking</span>
+                <span class="tag-pill">#ApacheKafka</span> <span class="tag-pill">#EventDriven</span> <span class="tag-pill">#Idempotency</span> <span class="tag-pill">#Banking</span> <span class="tag-pill">#DistributedSystems</span> <span class="tag-pill">#IBMMQ</span> 
               </div>
               <div class="post-card-footer">
                 <a href="./articles/event-driven-architecture-with-kafka-and-idempotent-consumers/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-
-            <!-- Article 3: Enterprise DDD & OpenAPI -->
-            <article class="post-card filterable-card" data-categories="architecture java" data-title="enterprise domain-driven design & contract-first openapi architecture" data-keywords="domain driven design openapi contract first microservices enterprise architecture java hld">
+            </article>            <article class="post-card filterable-card" data-categories="architecture java" data-title="enterprise domain-driven design & contract-first openapi architecture">
               <div class="post-card-meta">
-                <span class="post-category-tag">🏛️ Enterprise Architecture</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
+                <span class="post-category-tag">🏛️ Enterprise Architecture & DDD</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> September 15, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 7 min read</span>
               </div>
               <h3 class="post-card-title">
@@ -329,23 +280,17 @@
                 How to govern system-to-system integrations and eliminate distributed monoliths across multi-country teams using DDD bounded contexts and OpenAPI 3.0 specs.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#DomainDrivenDesign</span>
-                <span class="tag-pill">#OpenAPI</span>
-                <span class="tag-pill">#Microservices</span>
-                <span class="tag-pill">#Governance</span>
+                <span class="tag-pill">#DomainDrivenDesign</span> <span class="tag-pill">#OpenAPI</span> <span class="tag-pill">#ContractFirst</span> <span class="tag-pill">#Microservices</span> <span class="tag-pill">#EnterpriseArchitecture</span> 
               </div>
               <div class="post-card-footer">
                 <a href="./articles/enterprise-domain-driven-design-and-openapi-contracts/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-
-            <!-- Article 4: Reactive Microservices WebFlux -->
-            <article class="post-card filterable-card" data-categories="reactive spring java" data-title="building high-throughput reactive microservices with spring boot 3 & webflux" data-keywords="java 17 spring boot 3 spring webflux project reactor non-blocking microservices reactive mono flux">
+            </article>            <article class="post-card filterable-card" data-categories="spring reactive java" data-title="building high-throughput reactive microservices with spring boot 3 & webflux">
               <div class="post-card-meta">
-                <span class="post-category-tag">⚡ Reactive & Spring</span>
-                <span class="post-date"><i class="fa-regular fa-calendar"></i> Oct 01, 2026</span>
+                <span class="post-category-tag">🍃 Spring Boot & Cloud</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> October 01, 2026</span>
                 <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 8 min read</span>
               </div>
               <h3 class="post-card-title">
@@ -355,18 +300,14 @@
                 A deep architectural dive into designing non-blocking, event-driven reactive services in Java 17 and Spring Boot 3, contrasting thread-per-request with event-loop architectures.
               </p>
               <div class="post-card-tags">
-                <span class="tag-pill">#Java17</span>
-                <span class="tag-pill">#SpringBoot3</span>
-                <span class="tag-pill">#WebFlux</span>
-                <span class="tag-pill">#ProjectReactor</span>
+                <span class="tag-pill">#Java17</span> <span class="tag-pill">#SpringBoot3</span> <span class="tag-pill">#WebFlux</span> <span class="tag-pill">#ProjectReactor</span> <span class="tag-pill">#NonBlocking</span> <span class="tag-pill">#Microservices</span> 
               </div>
               <div class="post-card-footer">
                 <a href="./articles/building-high-throughput-reactive-microservices-spring-webflux/" class="read-more-link">
                   Read Article <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
-            </article>
-          </div>
+            </article>          </div>
 
           <div id="home-no-articles" class="empty-state" style="display: none;">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -409,33 +350,21 @@
       </section>
     </main>
 
-    <!-- Site Footer -->
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-grid">
-          <!-- Col 1: Bio -->
           <div class="footer-col footer-about">
             <h3 class="footer-title">Amit Kumar Shukla</h3>
             <p class="footer-bio">
               Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
             </p>
             <div class="footer-social">
-              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon">
-                <i class="fa-solid fa-envelope"></i>
-              </a>
-              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="./feed.xml" aria-label="RSS Feed" class="social-icon">
-                <i class="fa-solid fa-rss"></i>
-              </a>
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
 
-          <!-- Col 2: Navigation Links -->
           <div class="footer-col">
             <h4 class="footer-heading">Navigation</h4>
             <ul class="footer-links">
@@ -448,89 +377,51 @@
             </ul>
           </div>
 
-          <!-- Col 3: Key Topics -->
           <div class="footer-col">
             <h4 class="footer-heading">Architecture Topics</h4>
             <ul class="footer-links">
-              <li><a href="./categories/#java">☕ Java Core & Modern APIs</a></li>
-              <li><a href="./categories/#spring">🍃 Spring Boot & Cloud</a></li>
-              <li><a href="./categories/#reactive">⚡ Reactive & Event-Driven</a></li>
-              <li><a href="./categories/#cloud">☁️ Cloud & Kubernetes</a></li>
-              <li><a href="./categories/#architecture">🏛️ Enterprise Architecture & DDD</a></li>
-              <li><a href="./categories/#security-observability">🛡️ Security & Observability</a></li>
+              <li><a href="./categories/java/">☕ Java Core & Modern APIs</a></li>
+              <li><a href="./categories/spring/">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="./categories/reactive/">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="./categories/cloud/">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="./categories/architecture/">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="./categories/security-observability/">🛡️ Security & Observability</a></li>
             </ul>
           </div>
 
-          <!-- Col 4: Contact & Location -->
           <div class="footer-col">
             <h4 class="footer-heading">Contact & Location</h4>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada
-            </p>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a>
-            </p>
-            <p class="footer-contact-item">
-              <i class="fa-solid fa-phone"></i> +1 (236) 863-4703
-            </p>
-            <div class="footer-badge">
-              <span>Google GenAI Leader</span>
-              <span>KCNA Certified</span>
-              <span>PSM I & II</span>
-            </div>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
-          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top">
-            <i class="fa-solid fa-arrow-up"></i>
-          </button>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Search Modal Component -->
-  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-input">
+  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="search-modal-backdrop" id="search-backdrop"></div>
     <div class="search-modal-box">
       <div class="search-modal-header">
         <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
-        <input 
-          type="text" 
-          id="search-input" 
-          class="search-modal-input" 
-          placeholder="Search articles by topic, Java, Spring, Microservices..." 
-          autocomplete="off" 
-          spellcheck="false"
-        >
-        <button class="search-modal-close" id="search-modal-close" aria-label="Close search">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <input type="text" id="search-input" class="search-modal-input" placeholder="Search articles by topic, Java, Spring..." autocomplete="off">
+        <button class="search-modal-close" id="search-modal-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
       </div>
-
-      <div class="search-modal-status" id="search-status">
-        <span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span>
-      </div>
-
+      <div class="search-modal-status" id="search-status"><span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span></div>
       <div class="search-modal-results" id="search-results"></div>
-
-      <div class="search-modal-footer">
-        <div class="search-shortcuts">
-          <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> to navigate</span>
-          <span><kbd>&crarr;</kbd> to select</span>
-          <span><kbd>ESC</kbd> to close</span>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- Core Scripts -->
   <script src="./assets/js/main.js"></script>
   <script src="./assets/js/search.js"></script>
 
-  <!-- Interactive Homepage Filtering Script -->
+  <!-- Interactive Filtering Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const filterBtns = document.querySelectorAll('#home-category-filters .filter-btn');
@@ -546,10 +437,9 @@
         cards.forEach(card => {
           const cats = card.getAttribute('data-categories') || '';
           const title = card.getAttribute('data-title') || '';
-          const keywords = card.getAttribute('data-keywords') || '';
           
           const matchCategory = (currentCat === 'all') || cats.includes(currentCat);
-          const matchQuery = !currentQuery || title.includes(currentQuery) || keywords.includes(currentQuery);
+          const matchQuery = !currentQuery || title.includes(currentQuery);
 
           if (matchCategory && matchQuery) {
             card.style.display = '';

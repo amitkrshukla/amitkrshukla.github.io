@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Security & Observability Architecture Articles | Amit Kumar Shukla</title>
+  <meta name="description" content="Banking-grade security, JWT tokens, RBAC/IAM, CI/CD with Jenkins, and deep observability via Splunk, Kibana, and AppDynamics.">
+  <meta name="author" content="Amit Kumar Shukla">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Security & Observability Architecture Articles | Amit Kumar Shukla">
+  <meta property="og:description" content="Banking-grade security, JWT tokens, RBAC/IAM, CI/CD with Jenkins, and deep observability via Splunk, Kibana, and AppDynamics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amitkrshukla.github.io/">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Favicon & Styles -->
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/syntax.css">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body class="site-body">
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="site-header-container">
+        <a class="site-brand" href="../../">
+          <div class="brand-avatar"><span>AS</span></div>
+          <div class="brand-text">
+            <span class="brand-name">Amit Kumar Shukla</span>
+            <span class="brand-tagline">Senior Digital Architect</span>
+          </div>
+        </a>
+
+        <nav class="site-nav" id="site-nav">
+          <ul class="nav-links">
+            <li><a href="../../" class="nav-link ">Home</a></li>
+            <li><a href="../../articles/" class="nav-link ">Articles</a></li>
+            <li><a href="../../categories/" class="nav-link active">Categories</a></li>
+            <li><a href="../../resume/" class="nav-link ">Resume</a></li>
+            <li><a href="../../about/" class="nav-link ">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="action-btn search-trigger" id="search-trigger" title="Search articles (Ctrl+K)" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-key-hint">Ctrl K</span>
+          </button>
+          <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon dark-icon"></i>
+            <i class="fa-solid fa-sun light-icon"></i>
+          </button>
+          <a href="../../resume/" class="btn btn-sm btn-outline-primary resume-quick-btn">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Resume</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main" id="main-content">
+      <div class="page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 1.5rem;">
+          <a href="../../">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="../">Categories</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">Security & Observability</span>
+        </nav>
+
+        <!-- Category Banner -->
+        <header class="category-dedicated-header" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+            <div style="font-size: 3.5rem; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+              🛡️
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                <h1 style="font-size: 2rem; margin: 0;">Security & Observability</h1>
+                <span class="category-group-badge" style="background: var(--accent-subtle); color: var(--accent-primary); font-weight: 600; padding: 0.25rem 0.8rem; border-radius: var(--radius-full); font-size: 0.85rem; border: 1px solid var(--accent-primary);">
+                  1 Article
+                </span>
+              </div>
+              <p style="color: var(--text-secondary); margin: 0; font-size: 1.05rem; line-height: 1.6;">
+                Banking-grade security, JWT tokens, RBAC/IAM, CI/CD with Jenkins, and deep observability via Splunk, Kibana, and AppDynamics.
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <!-- Category Articles Grid -->
+        <div class="section-header" style="margin-bottom: 1.5rem;">
+          <div>
+            <h2 class="section-title">Articles in Security & Observability</h2>
+            <p class="section-subtitle">Deep dives, code implementations, and architectural best practices</p>
+          </div>
+          <a href="../../articles/" class="section-link">All Articles <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="posts-grid" style="margin-bottom: 3rem;">
+            <article class="post-card filterable-card" data-categories="security-observability cloud java" data-title="securing cloud-native java microservices with jwt, rbac & zero-trust architecture">
+              <div class="post-card-meta">
+                <span class="post-category-tag">🛡️ Security & Observability</span>
+                <span class="post-date"><i class="fa-regular fa-calendar"></i> July 10, 2026</span>
+                <span class="post-reading-time"><i class="fa-regular fa-clock"></i> 7 min read</span>
+              </div>
+              <h3 class="post-card-title">
+                <a href="../../articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/">Securing Cloud-Native Java Microservices with JWT, RBAC & Zero-Trust Architecture</a>
+              </h3>
+              <p class="post-card-excerpt">
+                A comprehensive guide to hardening Java 17 and Spring Boot microservices on Kubernetes using OAuth2/OIDC, cryptographically verified JWT tokens, and fine-grained RBAC.
+              </p>
+              <div class="post-card-tags">
+                <span class="tag-pill">#Security</span> <span class="tag-pill">#JWT</span> <span class="tag-pill">#ZeroTrust</span> <span class="tag-pill">#Kubernetes</span> <span class="tag-pill">#DevSecOps</span> <span class="tag-pill">#AWS</span> <span class="tag-pill">#SpringSecurity</span> 
+              </div>
+              <div class="post-card-footer">
+                <a href="../../articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/" class="read-more-link">
+                  Read Article <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+        </div>
+
+        <!-- Other Categories Jump Nav -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 2.5rem; margin-top: 2rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary); text-align: center;">Explore Other Architecture Categories</h3>
+          <div class="category-jump-nav">
+          <a href="../java/" class="category-jump-pill "><span>☕</span> Java Core & Modern APIs</a>
+          <a href="../spring/" class="category-jump-pill "><span>🍃</span> Spring Boot & Cloud</a>
+          <a href="../reactive/" class="category-jump-pill "><span>⚡</span> Reactive & Event-Driven</a>
+          <a href="../cloud/" class="category-jump-pill "><span>☁️</span> Cloud & Kubernetes</a>
+          <a href="../architecture/" class="category-jump-pill "><span>🏛️</span> Enterprise Architecture & DDD</a>
+          <a href="../security-observability/" class="category-jump-pill active"><span>🛡️</span> Security & Observability</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col footer-about">
+            <h3 class="footer-title">Amit Kumar Shukla</h3>
+            <p class="footer-bio">
+              Senior Digital Architect with 20+ years of experience architecting and delivering enterprise-scale digital banking, telecom, and cloud-native solutions.
+            </p>
+            <div class="footer-social">
+              <a href="https://linkedin.com/in/amit-kr-shukla" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="mailto:amit_kr_shukla@yahoo.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://github.com/amitkrshukla" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="../../">Home</a></li>
+              <li><a href="../../articles/">All Articles</a></li>
+              <li><a href="../../categories/">Browse by Category</a></li>
+              <li><a href="../../resume/">Interactive Resume</a></li>
+              <li><a href="../../AmitShukla_Resume_SeniorDigitalArchitect.pdf" target="_blank">Download Resume PDF</a></li>
+              <li><a href="../../about/">About Me</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Architecture Topics</h4>
+            <ul class="footer-links">
+              <li><a href="../../categories/java/">☕ Java Core & Modern APIs</a></li>
+              <li><a href="../../categories/spring/">🍃 Spring Boot & Cloud</a></li>
+              <li><a href="../../categories/reactive/">⚡ Reactive & Event-Driven</a></li>
+              <li><a href="../../categories/cloud/">☁️ Cloud & Kubernetes</a></li>
+              <li><a href="../../categories/architecture/">🏛️ Enterprise Architecture & DDD</a></li>
+              <li><a href="../../categories/security-observability/">🛡️ Security & Observability</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Contact & Location</h4>
+            <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</p>
+            <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:amit_kr_shukla@yahoo.com">amit_kr_shukla@yahoo.com</a></p>
+            <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> +1 (236) 863-4703</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Amit Kumar Shukla. All rights reserved. Hosted on GitHub Pages.</p>
+          <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal-backdrop" id="search-backdrop"></div>
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <i class="fa-solid fa-magnifying-glass search-modal-icon"></i>
+        <input type="text" id="search-input" class="search-modal-input" placeholder="Search articles by topic, Java, Spring..." autocomplete="off">
+        <button class="search-modal-close" id="search-modal-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-modal-status" id="search-status"><span class="search-hint">Type to start searching... Press <kbd>ESC</kbd> to exit</span></div>
+      <div class="search-modal-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/search.js"></script>
+</body>
+</html>

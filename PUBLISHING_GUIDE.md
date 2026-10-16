@@ -1,89 +1,135 @@
-# Quick Publishing Guide for Amit Kumar Shukla
+# Configuration & Publishing Guide for Amit Kumar Shukla
 
-Publishing a new article on your GitHub Pages site is designed to be frictionless and straightforward.
+Your website is fully **configuration-driven** using YAML files in `_data/`. Every category and article has its **own dedicated HTML file**, and everything stays in sync automatically.
 
 ---
 
-## 🚀 How to Publish a New Article
+## 📁 Configuration Files Overview
 
-### Method 1: Automated Scaffold (Recommended)
-Open PowerShell in the project directory and run:
+| File | Purpose |
+| :--- | :--- |
+| `_data/categories.yml` | Add, edit, or reorder article categories and their icons/descriptions. |
+| `_data/articles.yml` | Add, edit, or configure article titles, category mappings, tags, and summaries. |
+| `build.ps1` | Reads both YAML files and builds/updates all HTML pages & search index in seconds. |
+| `preview.ps1` | Runs `build.ps1` automatically and launches the local preview at `http://localhost:4000/`. |
+| `new-article.ps1` | Interactive assistant to scaffold a new article and update `_data/articles.yml`. |
+
+---
+
+## 🏷️ 1. How to Add or Edit Categories
+
+Open `_data/categories.yml`. Each category is defined with 5 properties:
+
+```yaml
+- name: "Artificial Intelligence & LLMs"
+  slug: "ai-llms"
+  description: "Enterprise GenAI architectures, LangChain4j, RAG systems, and LLM integrations with Spring Boot."
+  icon: "🤖"
+  badge_color: "#8338ec"
+```
+
+### What happens when you run `.\build.ps1`:
+1. A **dedicated category page** is automatically generated:
+   - `categories/ai-llms/index.html`
+   - Displays the category hero banner, icon, description, total article count, and cards for all articles in that category.
+2. The **master categories directory** (`categories/index.html`) is updated with the new category section and jump navigation.
+3. The **Home page** (`index.html`) automatically updates:
+   - Adds the new category card in the **Knowledge Base by Technology** section linking to `categories/ai-llms/`.
+   - Adds a filter button in the **Featured Articles** filter bar.
+4. The **Articles catalog** (`articles/index.html`) adds the new category filter button.
+
+---
+
+## 📝 2. How to Add or Edit Articles
+
+### Method A: Edit `_data/articles.yml` Directly
+Open `_data/articles.yml` and add a new block:
+
+```yaml
+- slug: "mastering-java-21-virtual-threads"
+  title: "Mastering Virtual Threads & Structured Concurrency in Java 21"
+  category: "java"
+  categories:
+    - "java"
+    - "spring"
+  date: "2026-11-05"
+  display_date: "November 05, 2026"
+  read_time: "7 min read"
+  tags:
+    - "Java21"
+    - "VirtualThreads"
+    - "ProjectLoom"
+    - "Concurrency"
+  description: "How Project Loom and Virtual Threads redefine concurrency in high-throughput enterprise Java services."
+  featured: true
+```
+
+Then run in PowerShell:
+```powershell
+.\build.ps1
+```
+The script will automatically create `articles/mastering-java-21-virtual-threads/index.html` with:
+- Full header, theme switcher, search trigger
+- Breadcrumbs linking to its category page (`../../categories/java/`)
+- Title, category badge, publication date, reading time
+- Author bar (Amit Kumar Shukla, Senior Digital Architect)
+- Content template ready for you to add your paragraphs and code blocks
+- Tags, social sharing buttons, author bio box, and footer
+
+### Method B: Use the Interactive Script
+Run in PowerShell:
 ```powershell
 .\new-article.ps1
 ```
-The script will prompt you for:
-1. **Title** (e.g. `Mastering Java 21 Virtual Threads & Structured Concurrency`)
-2. **Category** (select from the 6 pre-configured architecture categories)
-3. **Summary** (1-2 sentence excerpt used for search and cards)
-4. **Tags** (e.g. `Java 21, Loom, Concurrency, SpringBoot`)
-
-The script will automatically:
-- Create `articles/<slug>/index.html` with all formatting, breadcrumbs, tags, and author card.
-- Automatically update `search.json` so your new article is instantly searchable!
-
-Then simply open `articles/<slug>/index.html` in your editor, add your paragraphs and code snippets, and save!
+Follow the prompts for Title, Category, Summary, and Tags. It will append the entry to `_data/articles.yml` and run `build.ps1` for you in one step!
 
 ---
 
-### Method 2: Manual Creation
-1. Create a folder inside `articles/` with your article slug:
-   ```text
-   articles/my-new-article-title/index.html
-   ```
-2. Copy any existing article file (e.g. `articles/securing-cloud-native-java-microservices-jwt-and-zero-trust/index.html`) as a starting template.
-3. Update the Title, Category tag, Date, and content.
-4. Add an entry to `search.json` with the title, URL, date, category, tags, and description.
+## 📄 3. Dedicated HTML Pages Structure
+
+Each category and article has its own physical HTML page on the filesystem:
+
+```text
+categories/
+├── index.html                    # Master directory of all categories
+├── java/index.html               # Dedicated page for Java Core & Modern APIs
+├── spring/index.html             # Dedicated page for Spring Boot & Cloud
+├── reactive/index.html           # Dedicated page for Reactive & Event-Driven
+├── cloud/index.html              # Dedicated page for Cloud & Kubernetes
+├── architecture/index.html       # Dedicated page for Enterprise Architecture & DDD
+└── security-observability/index.html # Dedicated page for Security & Observability
+
+articles/
+├── index.html                    # Searchable & filterable catalog of all articles
+├── securing-cloud-native-java-microservices-jwt-and-zero-trust/index.html
+├── event-driven-architecture-with-kafka-and-idempotent-consumers/index.html
+├── enterprise-domain-driven-design-and-openapi-contracts/index.html
+└── building-high-throughput-reactive-microservices-spring-webflux/index.html
+```
 
 ---
 
-## 💻 Previewing Locally
+## 💻 4. Local Testing with `preview.ps1`
 
-To test your site locally in your web browser:
+Run in PowerShell:
 ```powershell
 .\preview.ps1
 ```
-This starts a local lightweight preview server at `http://localhost:4000/` and automatically opens the Home page in your default browser.
-- All CSS styles, dark/light mode toggle, category filters, and search modal will be 100% active and functional.
-- Press `Ctrl + C` in the PowerShell terminal whenever you want to stop the preview server.
+- It automatically runs `build.ps1` to synchronize all YAML changes into HTML.
+- It starts the local HTTP server at `http://localhost:4000/`.
+- It opens your default browser directly to the Home page.
+- Press `Ctrl + C` in PowerShell to stop the server.
 
 ---
 
-## 🌐 Publishing to GitHub Pages
+## 🌐 5. Deploying to GitHub Pages
 
-Once you're satisfied with your changes locally, deploy them to GitHub Pages with standard Git commands:
+Once you've previewed your changes locally:
 
 ```bash
 git add .
-git commit -m "Publish new article and update site content"
+git commit -m "Add new category and articles"
 git push origin main
 ```
 
-Your GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically deploy the static content directly to **https://amitkrshukla.github.io** within seconds!
-
----
-
-## 🏷️ Pre-Configured Categories
-
-The website has 6 pre-configured categories:
-
-| Category Name | Slug | Primary Focus |
-| :--- | :--- | :--- |
-| **Java Core & Modern APIs** | `java` | Java 17/21+, Virtual Threads (Loom), Memory & GC |
-| **Spring Boot & Cloud** | `spring` | Spring Boot 3, Spring Cloud, Spring Data |
-| **Reactive & Event-Driven** | `reactive` | Spring WebFlux, Project Reactor, Kafka, IBM MQ |
-| **Cloud & Kubernetes** | `cloud` | AWS, Kubernetes (KCNA), Docker, Microservices |
-| **Enterprise Architecture & DDD** | `architecture` | Domain-Driven Design, OpenAPI Contracts, System Design |
-| **Security & Observability** | `security-observability` | JWT, RBAC, Splunk, AppDynamics, Kibana, Jenkins CI/CD |
-
----
-
-## 📄 Updating Your Resume & Profile Details
-
-### 1. Update the Web Resume:
-Open `resume/index.html` and update any work experience, responsibilities, or skills.
-
-### 2. Update the Downloadable PDF:
-Replace `AmitShukla_Resume_SeniorDigitalArchitect.pdf` (and `assets/AmitShukla_Resume_SeniorDigitalArchitect.pdf`) with your latest PDF file using the same filename.
-
-### 3. Update Contact & Social Details:
-Open `_config.yml` or the header/footer of `index.html` to update email, phone, LinkedIn URL, or bio.
+GitHub Actions will deploy your changes directly to **https://amitkrshukla.github.io** within seconds!

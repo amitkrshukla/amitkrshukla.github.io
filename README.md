@@ -30,7 +30,12 @@ A modern, responsive, high-performance static website and technical architecture
 
 ## 📂 Project Structure
 
-```text
+├── _data/
+│   ├── categories.yml        # Configure categories: icons, names, descriptions & slugs
+│   └── articles.yml          # Configure articles: titles, category tags, metadata & summaries
+├── build.ps1                 # Static site generator: compiles YAML configs into HTML pages
+├── preview.ps1               # Local preview server for Windows: runs build.ps1 & opens browser
+├── new-article.ps1           # Interactive article scaffolding assistant
 ├── index.html                # Home page with hero, stats, category browser & latest articles
 ├── .nojekyll                 # Bypasses Jekyll on GitHub Pages to serve static files instantly
 ├── .github/
@@ -54,16 +59,20 @@ A modern, responsive, high-performance static website and technical architecture
 │   ├── enterprise-domain-driven-design-and-openapi-contracts/index.html
 │   └── building-high-throughput-reactive-microservices-spring-webflux/index.html
 ├── categories/
-│   └── index.html            # Dedicated category index with jump navigation
+│   ├── index.html            # Master category directory
+│   ├── java/index.html       # Dedicated category HTML page for Java Core
+│   ├── spring/index.html     # Dedicated category HTML page for Spring Boot
+│   ├── reactive/index.html   # Dedicated category HTML page for Reactive Systems
+│   ├── cloud/index.html      # Dedicated category HTML page for Cloud & K8s
+│   ├── architecture/index.html # Dedicated category HTML page for Architecture & DDD
+│   └── security-observability/index.html # Dedicated category HTML page for Security
 ├── resume/
 │   └── index.html            # Dedicated interactive web resume & printable profile
 ├── about/
 │   └── index.html            # Author bio, architectural pillars & tech spectrum
 ├── search.json               # Pre-indexed search data for instant modal search
 ├── 404.html                  # Custom 404 error page
-├── preview.ps1               # Zero-dependency local preview server for Windows PowerShell
-├── new-article.ps1           # Quick article scaffolding script
-├── PUBLISHING_GUIDE.md       # Step-by-step publishing instructions
+├── PUBLISHING_GUIDE.md       # Step-by-step configuration & publishing instructions
 └── README.md
 ```
 
