@@ -124,16 +124,16 @@
             <div class="post-content-column">
               <div class="post-entry-content" id="article-content">
                 <p>
-                  Most enterprise Java applications suffer from a quiet architectural code smell: <strong>The Anemic Domain Model</strong>.
+                  Most enterprise Java applications suffer from a quiet architectural code smell: <strong>The Anemic Domain Model</strong>. First diagnosed and famously critiqued by Martin Fowler in his seminal 2003 paper (<a href="https://martinfowler.com/bliki/AnemicDomainModel.html" target="_blank" rel="noopener noreferrer"><em>AnemicDomainModel</em></a>), this anti-pattern describes software systems where domain entities are reduced to passive data bags while business behavior is extracted into procedural service classes.
                 </p>
                 <p>
-                  We’ve all seen it. Entities are designed as passive data bags filled with private fields, boilerplate getters, open setters, and no-arg constructors. The actual business logic is then stripped out and dumped into sprawling, procedural <code>@Service</code> classes. The result? Mutable state floats everywhere, and illegal states (like an order that is simultaneously <em>Shipped</em> and <em>Cancelled</em>) are caught only at runtime—or worse, quietly persisted to the database.
+                  We’ve all seen it. Entities are designed as passive data holders filled with private fields, boilerplate getters, open setters, and framework-mandated no-arg constructors. The actual business logic is then stripped out and dumped into sprawling, procedural <code>@Service</code> classes. The result? Mutable state floats everywhere, encapsulation is compromised, and invalid combinations (such as an order that is simultaneously <em>Shipped</em> and <em>Cancelled</em>) are caught only at runtime—or worse, quietly persisted to the relational database.
                 </p>
                 <p>
-                  <strong>What if we could design domain models where illegal states are impossible to represent at compile-time?</strong>
+                  This directly contradicts the core tenet popularized in type-driven domain modeling: <strong>"Make illegal states unrepresentable."</strong> What if we could design enterprise domain models where the Java compiler itself guarantees business validity before code ever reaches runtime?
                 </p>
                 <p>
-                  In this post, we’ll explore how to harness modern <strong>Java 17</strong> features—specifically <strong>Records</strong> and <strong>Sealed Classes/Interfaces</strong>—alongside <strong>Spring Data JPA</strong> to write concise, highly safe, and robust enterprise domain models.
+                  In this post, we’ll explore how to harness modern <strong>Java 17</strong> language capabilities—specifically <strong>Records</strong> (<a href="https://openjdk.org/jeps/395" target="_blank" rel="noopener noreferrer">JEP 395</a>) and <strong>Sealed Classes/Interfaces</strong> (<a href="https://openjdk.org/jeps/409" target="_blank" rel="noopener noreferrer">JEP 409</a>)—alongside <strong>Spring Data JPA</strong> and Hibernate 6 to write concise, type-safe, and immutable domain models that enforce their own invariants.
                 </p>
 
                 <h2>1. The Cost of Mutability in Traditional Domain Design</h2>
@@ -155,10 +155,10 @@ order.setStatus(OrderStatus.SHIPPED);
 
                 <h2>2. Modeling Immutable Value Objects with Java 17 Records</h2>
                 <p>
-                  In Domain-Driven Design (DDD), <strong>Value Objects</strong> (like <code>Money</code>, <code>Address</code>, or <code>EmailAddress</code>) represent descriptive aspects of the domain with no conceptual identity. Because they are defined entirely by their attributes, they should never change after creation.
+                  In Domain-Driven Design (<a href="https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/" target="_blank" rel="noopener noreferrer">Eric Evans, 2003</a>), <strong>Value Objects</strong> (like <code>Money</code>, <code>Address</code>, or <code>EmailAddress</code>) represent descriptive aspects of the domain with no conceptual identity. Because they are defined entirely by their attributes, they must be immutable and self-validating.
                 </p>
                 <p>
-                  Hibernate 6.x+ natively supports Java records as <code>@Embeddable</code> types, letting us write immutability right out of the box.
+                  Historically, implementing Value Objects in Java required voluminous boilerplate (equals, hashCode, toString, defensive copies) or third-party libraries. With OpenJDK <a href="https://openjdk.org/jeps/395" target="_blank" rel="noopener noreferrer"><strong>JEP 395 (Records)</strong></a>, Java provides first-class support for immutable nominal tuples. Furthermore, Hibernate 6.x+ and Spring Data JPA natively support Java records as <code>@Embeddable</code> types, letting us write rock-solid value objects right out of the box:
                 </p>
 
                 <pre><code class="language-java">@Embeddable
@@ -194,7 +194,7 @@ public record Money(
 
                 <h2>3. Enforcing State Machines with Sealed Interfaces</h2>
                 <p>
-                  Business workflows rarely operate in a vacuum; they follow strict state transitions. Instead of tracking states with fragile boolean flags or plain strings, we can use sealed interfaces to close the state hierarchy explicitly.
+                  Business workflows rarely operate in a vacuum; they follow strict, regulated state transitions (critical in banking, payment processing, and digital onboarding). Instead of tracking states with fragile boolean flags, database strings, or loose enums, we can leverage OpenJDK <a href="https://openjdk.org/jeps/409" target="_blank" rel="noopener noreferrer"><strong>JEP 409 (Sealed Classes and Interfaces)</strong></a> to model an algebraic data type (ADT) where the compiler strictly governs the closed set of allowed states:
                 </p>
 
                 <pre><code class="language-java">public sealed interface OrderState permits PendingState, PaidState, ShippedState, CancelledState {
@@ -219,7 +219,7 @@ public record CancelledState(LocalDateTime cancelledAt, String reason) implement
 
                 <h3>Exhaustive Pattern Matching for Transitions</h3>
                 <p>
-                  Because <code>OrderState</code> is sealed, the Java compiler knows every possible subclass. When implementing transition logic, we can use modern <code>switch</code> expressions that guarantee compile-time exhaustiveness—no generic default fallback required:
+                  Because <code>OrderState</code> is sealed, the Java compiler knows every possible implementation. Combined with Pattern Matching for <code>switch</code> (<a href="https://openjdk.org/jeps/406" target="_blank" rel="noopener noreferrer">JEP 406</a> / <a href="https://openjdk.org/jeps/441" target="_blank" rel="noopener noreferrer">JEP 441</a>), we can implement state transition methods that guarantee compile-time exhaustiveness without brittle <code>default:</code> fallbacks:
                 </p>
 
                 <pre><code class="language-java">public Order pay(String transactionId) {
@@ -237,7 +237,7 @@ public record CancelledState(LocalDateTime cancelledAt, String reason) implement
 
                 <h2>4. Persisting Sealed Hierarchies with Spring Data JPA</h2>
                 <p>
-                  Bridging rich domain models with relational databases often feels awkward, but JPA's inheritance mapping handles polymorphic states cleanly. Using a single-table or joined-table strategy, we can map our sealed domain states directly to persistence entities:
+                  Bridging rich, immutable domain models with relational persistence has historically been an impedance mismatch. However, modern Spring Data JPA (3.x+) and Hibernate 6 handle record-based embeddables and polymorphic inheritance hierarchies cleanly. Using a single-table or joined-table strategy, we map domain states directly to database entities while preserving rich domain behavior:
                 </p>
 
                 <pre><code class="language-java">@Entity
@@ -258,6 +258,60 @@ public class PaidOrderEntity extends OrderEntity {
     private LocalDateTime paidAt;
     private String transactionId;
 }</code></pre>
+
+                <h2>5. Key References & Canonical Reading</h2>
+                <div class="references-card" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin: 1.75rem 0 2rem 0;">
+                  <ul style="list-style: none; padding-left: 0; margin-bottom: 0; display: flex; flex-direction: column; gap: 1rem;">
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>Martin Fowler (2003):</strong> 
+                        <a href="https://martinfowler.com/bliki/AnemicDomainModel.html" target="_blank" rel="noopener noreferrer"><em>AnemicDomainModel</em></a> 
+                        — The canonical architectural definition and critique of entities stripped of business behavior.
+                      </div>
+                    </li>
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>Eric Evans (2003):</strong> 
+                        <a href="https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/" target="_blank" rel="noopener noreferrer"><em>Domain-Driven Design: Tackling Complexity in the Heart of Software</em></a> (Addison-Wesley) 
+                        — Foundational definitions of Value Objects, Entities, and Aggregate Invariants.
+                      </div>
+                    </li>
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>OpenJDK JEP 395:</strong> 
+                        <a href="https://openjdk.org/jeps/395" target="_blank" rel="noopener noreferrer"><em>Records</em></a> 
+                        — Official specification for Java record classes as transparent, immutable data carriers.
+                      </div>
+                    </li>
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>OpenJDK JEP 409:</strong> 
+                        <a href="https://openjdk.org/jeps/409" target="_blank" rel="noopener noreferrer"><em>Sealed Classes</em></a> 
+                        — Restricting which classes or interfaces may extend or implement them for exhaustive algebraic modeling.
+                      </div>
+                    </li>
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>Yaron Minsky (2011):</strong> 
+                        <a href="https://blog.janestreet.com/effective-ml-revisited/" target="_blank" rel="noopener noreferrer"><em>Effective ML: "Making Illegal States Unrepresentable"</em></a> 
+                        — The type-driven design philosophy of encoding domain constraints directly into the compiler type system.
+                      </div>
+                    </li>
+                    <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                      <i class="fa-solid fa-bookmark" style="color: var(--accent-primary); margin-top: 0.35rem; font-size: 0.9rem;"></i>
+                      <div>
+                        <strong>Spring Data JPA Reference:</strong> 
+                        <a href="https://docs.spring.io/spring-data/jpa/reference/" target="_blank" rel="noopener noreferrer"><em>Spring Data JPA & Jakarta Persistence</em></a> 
+                        — Aggregate root boundaries, lifecycle management, and embeddable records support in Spring Boot 3.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
 
                 <h2>Final Thoughts: The Shift Toward Compiler-Driven Architecture</h2>
                 <p>
